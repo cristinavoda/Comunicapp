@@ -1,29 +1,82 @@
-# comunic-app
+# COMUNICADOR 🗣️📱
 
-This template should help get you started developing with Vue 3 in Vite.
+COMUNICADOR es una aplicación diseñada para personas no verbales con condiciones como autismo, ictus, parálisis cerebral o Alzheimer. Proporciona un sistema visual y auditivo que permite la comunicación a través de imágenes y voz.
 
-## Recommended IDE Setup
+## 🚀 Funcionalidades principales
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+### 📌 **COMUNICADOR** (DEMO)
 
-## Customize configuration
+- Incluye imágenes predefinidas y síntesis de voz.
+- Al hacer clic sobre las palabras, se reproducirá el audio correspondiente.
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+### 📌 **ACTUALIZARCOMUNICADOR** (Personalización)
 
-## Project Setup
+- **Subir imagen personal:** Permite reemplazar imágenes y editar las palabras asociadas.
+- **Buscar en Pixabay:** Opción para encontrar imágenes en Internet.
+- **Almacenamiento:** Se usa Vuex y LocalStorage para guardar imágenes personalizadas.
 
-```sh
-npm install
+### 📌 **MICOMUNICADOR** (Personalización total)
+
+- El usuario puede crear su propio comunicador con imágenes personalizadas y voz.
+- Se adapta a las necesidades individuales del usuario.
+
+### 📌 **CONTACTO**
+
+- Sección para enviar un mensaje al autor en caso de dudas o solicitud de ayuda.
+
+## 🛠️ Tecnologías utilizadas
+
+- **Frontend:** JavaScript, Vue.js, HTML, CSS.
+- **Gestión de estado:** Vuex (para guardar imágenes y configuraciones personalizadas).
+- **Backend:** Implementación de un servicio para el envío de correos.
+- **Integraciones:** Pixabay API para la búsqueda de imágenes.
+
+## 📂 Estructura del código
+
+```
+comunicapp/
+│-- src/
+│   ├── components/       # Componentes reutilizables
+│   ├── views/            # Vistas principales (Comunicador, Galería, Contacto...)
+│   ├── store/            # Vuex store (gestión de imágenes y configuración)
+│   ├── router/           # Vue Router (gestión de navegación entre vistas)
+│   ├── assets/           # Imágenes y estilos
+│   ├── App.vue           # Componente principal
+│   ├── main.js           # Archivo principal de configuración
+│-- public/               # Archivos estáticos
+│-- package.json          # Dependencias y scripts de npm
+│-- README.md             # Información del proyecto
 ```
 
-### Compile and Hot-Reload for Development
+## 📥 Instalación y ejecución
 
-```sh
-npm run dev
-```
+1. Clonar el repositorio:
+   ```sh
+   git clone https://github.com/cristinavoda/Comunicapp.git
+   ```
+2. Entrar en la carpeta del proyecto:
+   ```sh
+   cd Comunicapp
+   ```
+3. Instalar dependencias:
+   ```sh
+   npm install
+   ```
+4. Ejecutar la aplicación en modo desarrollo:
+   ```sh
+   npm run serve
+   ```
+5. Acceder a la aplicación en el navegador:
+   ```
+   http://localhost:8080/
+   ```
 
-### Compile and Minify for Production
+## 📬 Contacto
 
-```sh
-npm run build
-```
+Para dudas o sugerencias, puedes enviar un mensaje al autor.
+
+---
+
+¡Esperamos que COMUNICADOR sea una herramienta útil para muchas personas! 💙
+
+❤️❤️

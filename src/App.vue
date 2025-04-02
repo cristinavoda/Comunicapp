@@ -151,7 +151,7 @@ header {
   width: 60px;
   height: 42px;
   padding: 1PX;
-  color: #0f7892;
+  color: #0ffffff;
   background:#eaebe8;
   border: none;
   cursor: pointer;
@@ -182,7 +182,7 @@ header {
 }
 .btn-mi-comunicador{
   font-size: 20px; 
-  color: rgb(65, 37, 223);
+  color: #ffffff;
   text-decoration: none;
   background-color: #1695b4; 
   padding: 10px 10px; 

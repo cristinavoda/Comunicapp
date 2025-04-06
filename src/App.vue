@@ -139,7 +139,8 @@ header {
   justify-content:flex-start ;
   margin-top:-10px;
   align-items: center;
-  width:auto;
+  width:100%;
+  max-width: 100vw; 
   height: 80px;
   background: linear-gradient(to bottom, #4153b4, #87d3ce);
   margin-left: -10px;

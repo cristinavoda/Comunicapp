@@ -1,5 +1,5 @@
 <template>
-    <div class="galeria">
+    <div class="gallery">
       <h1>GALERIA</h1>
   
       <div class="search-container">
@@ -10,130 +10,140 @@
           <input type="file" @change="handleFileUpload" accept="image/*" hidden />
         </label>
   
-  
         <input
-          type="text"
-          v-model="searchQuery"
-          @keyup.enter="fetchImages"
-          placeholder="Escribe una palabra..."
-        />
-        <button @click="fetchImages" class="search-button">
-          <i class="fas fa-search"></i>
-        </button>
+      type="text"
+      v-model="searchQuery"
+      @keyup.enter="fetchImages"
+      placeholder="Escribe una palabra..."
+    /> <button @click="fetchImages" class="search-button">
+      <i class="fas fa-search"></i> 
+    </button>
+     </div>
+
+    <div v-if="loading">Cargando imágenes...</div>
+    <div v-if="error">{{ error }}</div>
+
+    <div class="categories">
+      <h2>Categorías</h2>
+      <button v-for="cat in categories" :key="cat" @click="selectCategory(cat)">
+        {{ cat }}
+      </button>
+    </div>
+
+    <div class="images-grid">
+      <div v-for="image in images" :key="image.id" class="image-card">
+        <img :src="image.previewURL" :alt="image.tags" />
+        <button @click="addToGallery(image)">Guardar</button>
       </div>
-  
-      <div v-if="loading">Cargando imágenes...</div>
-      <div v-if="error">{{ error }}</div>
-  
-  
-      <div class="images-grid">
-        <div v-for="image in images" :key="image.id" class="image-card">
-          <img :src="image.previewURL" :alt="image.tags" />
-          <button @click="addToGallery(image)">Guardar</button>
-        </div>
-      </div>
-  
-      <h2>MI GALERIA</h2>
-  
-      <div class="saved-images">
-        <div v-if="savedImages && savedImages.length">
-        <div v-for="image in savedImages" :key="image.id" class="image-card">
-  
-          <img :src="image.previewURL" :alt="image.tags" />
-           <router-link :to="{ name: 'ActualizarComunicador', params: { image: image } }">
-            
-            <button class="select-btn" @click="sendImage(image)">Actualizar Comunicador</button>
-        </router-link>
-        </div>
-        </div>
-  <div v-for="imagen in savedImages" :key="imagen.id" @click="enviarAActualizar(imagen.url)">
-        <img :src="imagen.url" alt="Imagen seleccionada" /> </div>
-          <button class="delete-button" @click="removeFromSaved(image.id)">
-            Eliminar
-          </button>
-      </div>
-      </div>
+    </div>
     
+
+    <h2> Mi Galeria</h2>
     
-  </template>
+
+    <div class="saved-images">
+      <div v-for="image in savedImages" :key="image.id" class="image-card">
+  <img :src="image.previewURL" :alt="image.tags" />
   
-  <script>
-  import { mapState, mapActions } from "vuex"; 
-  
-  export default {
-    data() {
-      return {
-        searchQuery: "",
-        uploadedImage:[],
-        hasChanges: false,
-        selectedImageText: "",
-        images: [],
-        savedImages: [],
-        loading: false,
-        error: null,
-      };
-    },
-    computed: {
-      ...mapState(["savedImages", "galeria"]),
-    },
-    methods: {
-      ...mapActions(["addSavedImage", "removeSavedImage" ,"addToGaleria"]), 
-      selectImage(image) {
-        this.$store.commit("SET_SELECTED_IMAGE", image); // Guardar en Vuex
-        this.$router.push("/actualizar-comunicador"); // Redirigir a la vista
-      },// Acciones de Vuex
-  
-      handleFileUpload(event) {
-    const file = event.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        this.uploadedImage = e.target.result;
-        this.selectedPixabayImage = null; // Deseleccionar Pixabay si se sube una imagen
-      };
-      reader.readAsDataURL(file);
-    }
+  <button class="delete-button" @click="removeFromSaved(image.id)">
+    Eliminar
+  </button>
+</div>
+</div>
+  </div>
+</template>
+
+<script>
+import { mapState ,mapActions } from "vuex";
+import Comunicador from "./Comunicador.vue";
+
+export default {
+  data() {
+    return {
+      searchQuery: "",
+      images: [],
+      savedImages: [], 
+      categories: ["Comida", "Familia", "Hogar", "Salud", "Actividades"],
+      loading: false,
+      error: null,
+    };
+    
   },
-      async fetchImages() {
-        if (!this.searchQuery) return;
-        this.loading = true;
-        this.error = null;
+  computed: {
+    ...mapState(["savedImages"]), // Ahora obtenemos las imágenes desde Vuex
+  },
   
-        try {
-          const response = await fetch(
-            `https://pixabay.com/api/?key=43441518-85d5d394329fe4bdef820c138&q=${encodeURIComponent(
-              this.searchQuery
-            )}&image_type=photo`
-          );
-          const data = await response.json();
-          this.images = data.hits;
-        } catch (err) {
-          this.error = "Hubo un error al cargar las imágenes.";
-          console.error(err);
-        } finally {
-          this.loading = false;
-        }
-      },
-  
-      addToGallery(image) {
-        this.addSavedImage(image); // Usa Vuex en lugar de modificar directamente savedImages
-      },
-  
-      removeFromSaved(image) {
-        this.removeSavedImage(image); // Usa Vuex para eliminar imágenes
-      },
-      selectImageForUpdate(image) {
-        // Aquí puedes hacer que la imagen seleccionada se pase a Actualizar-Comunicador
-        this.$router.push({ name: 'ActualizarComunicador', params: { image } });
-      },
-    
-  
-      selectCategory(category) {
-        this.searchQuery = category;
-        this.fetchImages();
-      },
+
+  methods: {...mapActions(["addToGaleria"]),
+  ...mapActions(["addSavedImage", "removeSavedImage"]),
+
+    ...mapActions(["addToActualizarCommunicator"]), // Acción para Actualizar-Comunicador
+    hablar(texto) {
+      let utterance = new SpeechSynthesisUtterance(texto);
+      utterance.voice = speechSynthesis.getVoices().find(v => v.name === this.vozSeleccionada);
+      speechSynthesis.speak(utterance);
     },
-  };
+   
+    handleFileUpload(event) {
+  const file = event.target.files[0];
+  if (file) {
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      this.uploadedImage = e.target.result;
+      this.selectedPixabayImage = null; 
+    };
+    reader.readAsDataURL(file);
+  }
+},
+    async fetchImages() {
+      if (!this.searchQuery) return;
+      this.loading = true;
+      this.error = null;
+
+      try {
+        const response = await fetch(
+          `https://pixabay.com/api/?key=43441518-85d5d394329fe4bdef820c138&q=${encodeURIComponent(
+            this.searchQuery
+          )}&image_type=photo`
+        );
+        const data = await response.json();
+        this.images = data.hits;
+      } catch (err) {
+        this.error = "Hubo un error al cargar las imágenes.";
+        console.error(err);
+      } finally {
+        this.loading = false;
+      }
+    },
+    addToGallery(image) {
+      if (!this.savedImages.some((img) => img.id === image.id)) {
+        this.savedImages.push(image); // Añadir a Imágenes Guardadas
+      }
+      
+    },
+   addToActualizarComunicador(image) {
+      this.addgallery(image); // Enviar a Actualizar-Comunicador
+      alert("Imagen añadida a Galeria.");
+    },
+    selectCategory(category) {
+      this.searchQuery = category;
+      this.fetchImages();
+    },
+       
+ 
+  removeFromSaved(id) {
+    this.savedImages = this.savedImages.filter((img) => img.id !== id);
+    if (this.selectedImageId === id) {
+      this.selectedImageId = null; // Restablece la selección al eliminar la imagen
+    }
+  
+},
+  
+    
+  },
+};
+
+       
   </script>
   
   

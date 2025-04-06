@@ -1,10 +1,8 @@
 <template>
 
-
-  <div class="grid" >
+<div class="grid" >
   
-    <!-- Botones con funcionalidad de voz -->
-    <button
+   <button
       v-for="(item, index) in buttons"
       :key="index"
       class="btn"
@@ -13,7 +11,7 @@
       @click="speakText(item.text)"
     ></button>
 
-    <!-- Botones principales de 'NO' y 'SÍ' -->
+    
     <button id="no-button" class="button no" @click="speakText('NO')">NO</button>
     <button id="si-button" class="button si" @click="speakText('SÍ')">SÍ</button>
   </div>
@@ -44,31 +42,28 @@ export default {
   data() {
     return {
       buttons: [
-        { text: "quiero comer", image: "/comer.jpg" },
-        { text: "Agua", image: "/agua.jpg" },
-        { text: "Ir a pasear", image: "/pasear.jpg" },
-        { text: "Kinder", image: "/kinder.png" },
-        { text: "quiero al baño", image: "/pipi.jpg" },
-        { text: "Tren", image: "/tren.jpg" },
+        { text: "quiero comer", image: "/pasta.jpg" },
+        { text: "Agua ,tengo sed", image: "/agua.jpg" },
+        { text: "vamos  a pasear", image: "/pasear.jpg" },
+        { text: "estoy enfermo  ", image: "/enfermo.jpg" },
+        { text: "quiero al baño", image: "/baño.jpg" },
+        { text: "quiero ir con el tren", image: "/tren.webp" },
       ],
     };
   },
   methods: {
     speakText(text) {
       const utterance = new SpeechSynthesisUtterance(text);
-      utterance.lang = "es-ES"; // Idioma español
+      utterance.lang = "es-ES";
       speechSynthesis.speak(utterance);
     },
   },
 };
-
-
-
 </script>
 
 <style scoped>
 body {
-    font-family:Arial, sans-serif ;
+font-family:Arial, sans-serif ;
 display: flex;
 justify-content: center;
 align-items: center;
@@ -78,44 +73,61 @@ background-color: #e8ecdc;
 }
 
 .grid {
-  display: auto ;
+  display: grid ;
   margin-left: -150px ;
   margin-top: -50px ;
+  padding: -5px;
+  row-gap: 15px; 
+  column-gap: 10px; 
+  margin-left: -160px;
+ 
+  ;
 }
 
 .btn {
   position: relative;
-  width: 150px;
-  height: 130px;
+  display: inline-block;
+  width: 210px;
+  height: 210px;
   background-size: cover;
   background-color: rgb(29, 105, 143);
   background-position: center;
-  border: none;
+  border-radius: 12px;
+  box-shadow: 4px 4px 4px rgba(203, 162, 250, 0.884);
   cursor: pointer;
-  margin: 5px;
+  overflow: hidden;
+  margin: 12px;
+  margin-bottom: 12px;
+  padding: 0px;
   margin-left: 0cap;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 .btn:hover:after {
-        content: attr(data-text);
+  content: attr(data-text);
         position:absolute;
-        bottom: 10px;
+        bottom: 1px;
         left: 50%;
         transform: translateX(-50%);
-        background-color: rgba(18, 76, 122, 0.929);
-        color: #fff;
-        padding: 10px 20px;
+        background-color: #ffffff;
+        color: #42acc7; font-family: 'Poppins', sans-serif;
+        font-weight: 600;
+        padding: 10px 10px;
         border-radius: 5px;
-        font-size: 14px;
-        white-space: nowrap; /* Evita saltos de línea */
-    min-width: 50px; /* Ajusta el ancho mínimo */
-    max-width: 200px; /* Para evitar textos muy largos */
+        font-size: 20px;
+        white-space: nowrap;
+    min-width: 50px; 
+    max-width: 200px; 
     text-align: center;
+    height: 10px;
     }
 .button {
   width: 100px;
- 
-  color: #d4e7ec;
+  height: 40px;
+  background-color: aqua;
+  font-family: 'Poppins', sans-serif;
   font-size: 18px;
+  font-weight: 600;
+  color: #d4e7ec;
   margin: 5px;
   cursor: pointer;
   margin-left: 0px;
@@ -135,7 +147,7 @@ background-color: #e8ecdc;
   
   
 }.container {
-  padding: 40px;
+  padding: 60px;
   font-size: 16px;
 }
 

@@ -8,13 +8,13 @@
         :aria-expanded="isNavbarOpen.toString()"
         aria-controls="sidebar"
         aria-label="Abrir menú de navegación">
-        ☰
+         ≣
       </button>
       
-      <button class="btn-comunicador"> <router-link 
+    <button class="btn-comunicador"> <router-link 
               to="/comunicador" 
               aria-label="Ir a la página del comunicador" 
-              @click="Comunicador"> COMUNICADOR</router-link></button>
+              @click="Comunicador"> Comunicador</router-link></button>
 
               <button class="btn-mi-comunicador"> <router-link 
               to="/mi-comunicador" 
@@ -126,7 +126,7 @@ body {font-family: Arial, sans-serif;
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-  margin: 0;
+  margin-left: -20px;
   height: 100vh;
   background-color: #eaeedd;
   overflow-x: hidden;
@@ -139,20 +139,20 @@ header {
   justify-content:flex-start ;
   margin-top:-10px;
   align-items: center;
-  width:fit-content ;
+  width:auto;
   height: 80px;
   background: linear-gradient(to bottom, #4153b4, #87d3ce);
+  margin-left: -10px;
   gap:35px;
   padding: 0 40px;
 
 
 .menu-toggle {
-  font-size: 24px;
   width: 60px;
   height: 42px;
   padding: 1PX;
-  color: #0f7892;
-  background:#eaebe8;
+  color: #42acc7;
+  background:#f6f7f5;
   border: none;
   cursor: pointer;
   margin-right:150px; 
@@ -163,28 +163,75 @@ header {
   
 }
 
-.btn-comunicador{
+
+.router-link-exact-active, 
+.router-link-active {
+  text-decoration: none !important;
+  color: #07BEB8;
+}
+
+.btn-comunicador, .btn-mi-comunicador {
+  text-decoration: none !important;
+  color: #07BEB8;
+}
+router-link-exact-inactive, 
+.router-link-inactive {
+  text-decoration: none !important;
+  color:#07BEB8;
+}
+
+.btn-comunicador, .btn-mi-comunicador {
+  text-decoration: none !important;
+}
+
+.router-link {
+  text-decoration: none !important;
+  color:#07BEB8;
+}
+
+header .btn-comunicador, header .btn-mi-comunicador {
+  text-decoration: none !important;
+  color:#07BEB8 !important;
+}
+
+
+
+
+.btn-comunicador{ 
+ 
+  text-decoration: none !important; 
+  font-family: 'Poppins', sans-serif;
+  color: #07BEB8;
+  font-size: 18px;
+  font-weight: 600;
+  text-shadow: 1px 1px 2px rgba(30, 170, 123, 0.3);
   font-size: 20px; 
-  color: rgb(53, 12, 202);
-  text-decoration: #04706ee1;
-  background-color: #1695b4; 
+  background-color: #f6f9fa; 
   padding: 10px 10px; 
-  border:#f3f2f2; 
-  border-radius: 5px; 
   display: inline-block; 
   text-align: center; 
   cursor: pointer; 
   margin-left: -180px;
   margin-top: 20px; 
   margin-bottom: auto;
-  box-shadow: 0 2px 4px rgba(19, 3, 49, 0.2);
+  box-shadow: 0 2px 4px rgba(60, 206, 186, 0.2);
   transition: background-color 0.3s ease; 
+  
+}
+.router-link {
+  text-decoration: none !important;
+  color: inherit; /* Mantener el color si se desea */
 }
 .btn-mi-comunicador{
+  text-decoration: none !important;
+  color: rgb(38, 142, 226);
+  
+  font-family: 'Poppins', sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
   font-size: 20px; 
-  color: rgb(65, 37, 223);
-  text-decoration: none;
-  background-color: #1695b4; 
+  background-color: #f1f5f7; 
   padding: 10px 10px; 
   border:#f0eae6; 
   border-radius: 5px; 
@@ -194,32 +241,36 @@ header {
   margin-left: -30px;
   margin-top: 20px; 
   margin-bottom: auto;
-  box-shadow: 0 2px 4px rgba(34, 61, 134, 0.2); 
+  box-shadow: 0 2px 4px rgba(89, 192, 183, 0.2); 
   transition: background-color 0.3s ease; 
 }
 
 
 .btn-comunicador:hover {
-  background-color: #e3e7eb; 
+  background-color: #14969b; 
+  color:#eaeedd;
   text-decoration: none;
 }
 
 
 .btn-mi-comunicador:hover {
-  background-color: #edf0f3; 
+  background-color: #2ba1a5; 
   text-decoration: none;
 }
 
 
 }
 
-
+.router-link {
+  text-decoration: none !important;
+  color: inherit; /* Mantener el color si se desea */
+}
 
 .sidebar {
   position: fixed;
   top: 18;
   left: -190px;
-  margin-left:8px ;
+  margin-left:-12px ;
   z-index: 1000;  
   width: 170px;
   height: 100%;
@@ -228,7 +279,7 @@ header {
   color: white;
   overflow-y:auto;
   transition: opacity 0,5s visibility 0,5s;
-  padding-top: 80px;
+  padding-top: 20px;
 }
 
 .sidebar.open {
@@ -272,12 +323,14 @@ main {
     .grid {
         display: grid;
         grid-template-columns: repeat(2, 150px);
-        grid-gap: 10px;
+        row-gap: 10px; /* Espacio entre las filas */
+  column-gap: 70px;
+       
     }
     
     .btn {
-        width: 150px;
-        height: 100px;
+        width: 190px;
+        height: 210px;
         background-color: #25b3b8;
         background-size: cover;
         background-position: center;
@@ -291,7 +344,7 @@ main {
         position: absolute;
         bottom: 10px;
         
-        background-color: rgba(180, 28, 36, 0.929);
+        background-color: rgba(28, 132, 180, 0.929);
         color: #ffffff;
         padding: 5px 10px;
         border-radius: 5px;

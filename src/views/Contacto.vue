@@ -48,6 +48,7 @@ const handleSubmit = () => {
   min-width:200px;
   margin-left:-200px; 
   margin-right: 50 px;
+  margin-top: -70px;
   background: #ffffff;
   border-radius: 10px;
   box-shadow: 0px 4px 6px rgba(15, 138, 117, 0.89);

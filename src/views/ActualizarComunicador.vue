@@ -98,7 +98,7 @@ export default {
       speechSynthesis.speak(utterance);
     },
    
-handleFileUpload(event) {
+    handleFileUpload(event) {
   const file = event.target.files[0];
   if (file) {
     const reader = new FileReader();
@@ -109,7 +109,7 @@ handleFileUpload(event) {
     reader.readAsDataURL(file);
   }
 },
-async fetchImages() {
+async fetchImages() { 
   if (!this.searchQuery) return;
   this.loading = true;
   this.error = null;
@@ -119,31 +119,41 @@ async fetchImages() {
       `https://pixabay.com/api/?key=43441518-85d5d394329fe4bdef820c138&q=${encodeURIComponent(this.searchQuery)}&image_type=photo&per_page=6`
     );
     const data = await response.json();
+
     if (data.hits.length === 0) {
       this.error = "No se encontraron imágenes.";
+      this.images = [];  
     } else {
       this.images = data.hits;
+
+     
+      const imageToUse = this.selectedImage || data.hits[0].webformatURL;
+      const base64Image = await this.imageToBase64(firstImage);
+      this.selectedPixabayImage = base64Image;
+      this.addToPreviewSection(imageToUse);
+      localStorage.setItem("imagenPixabay", base64Image);
     }
   } catch (err) {
-    this.error = "Hubo un error al cargar las imágenes.";
+    this.error = ".";
     console.error(err);
   } finally {
     this.loading = false;
   }
-},
+}
+,
 
-selectPixabayImage(image) {
+   selectPixabayImage(image) {
       this.selectedPixabayImage = image.webformatURL;
       this.images = []; 
     },
 
 
-addToPreviewSection(image) {
+   addToPreviewSection(image) {
   this.$store.commit("set_SELECTED_IMAGE_TEXT", image);
   this.$store.commit("UPDATE_SELECTED_IMAGE_TEXT", image.tags);
 },
 
-replaceImage(index) {
+    replaceImage(index) {
   if (this.uploadedImage || this.selectedPixabayImage) {
     const newImage = this.uploadedImage || this.selectedPixabayImage;
     this.$store.dispatch("replaceImage", { index, image: newImage, text: this.selectedImageText });
@@ -153,8 +163,8 @@ replaceImage(index) {
     this.hasChanges = true;
   }
 },
-guardarImagenDesdePixabay(imagen) {
-  store.dispatch("saveImage", imagen);
+  guardarImagenDesdePixabay(imagen) {
+  this.$store.dispatch("saveImage", imagen);
 },
 
 
@@ -190,7 +200,7 @@ h1 {
   background: linear-gradient(45deg, #4426f0, #61d495);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  font-size: xx-large;
+  font-size: x-large;
   text-align: center;
   margin-top:-30px ;
   margin-left: -140px;
@@ -203,7 +213,7 @@ h1 {
   background: linear-gradient(to bottom, #3903b6, #85e6d1);
   color: white;
   border-radius: 5px;
-  width: 300px;
+  width: 440px;
   text-align: center;
   align-items: center;
   border-radius: 12px;
@@ -215,7 +225,7 @@ h1 {
   grid-template-columns: repeat(2, 1fr);
   gap: 10px;
   margin-top: 20px;
-  width: 110px;
+  width: 220px;
   margin-left: -18px;
 }
 
@@ -234,8 +244,8 @@ h1 {
   
   background-color: #3bb7dd;
   display: flex; 
-  width: 336px;
-  margin-left: -25px;
+  width: 470px;
+  margin-left: -20px;
   border: none;
   border-radius: 5px;
   padding: 5px;
@@ -267,8 +277,9 @@ h1 {
   border-radius: 5px;
   display: flex; 
   align-items: center;
-  justify-content: center; }
-
+  justify-content: center;
+  margin-left:-9px; }
+  
 .search-button i {
   font-size: 18px; 
   color: #2b0c72;
@@ -279,8 +290,9 @@ h1 {
 }
 
 .preview-section img {
-  max-width: 300px;
+  max-width: 470px;
   border-radius: 5px;
+  margin-left:-15px;
 }
 
 .input-button{
@@ -293,14 +305,17 @@ h1 {
   color: rgb(12, 8, 59);
   flex-grow: 1; 
   margin-right: 10px; 
+  margin-left:-9px;
 }
 
 .grid {
   display: grid;
   grid-template-columns: repeat(2, 150px);
-  gap: 40px;
+  row-gap: 10px;
+  column-gap: 100px;
+ 
   margin: 20px auto;
-  margin-left: -170px;
+  margin-left: -150px;
 }
 
 .save-button {
@@ -323,21 +338,22 @@ h1 {
   position: relative;
   display: inline-block;
   overflow: hidden;
+  align-items: center;
   background: white;
-  width: 130px;
-  height: 140px;
+  width: 180px;
+  height: 230px;
   border-radius: 12px;
   box-shadow: 2px 4px 10px rgba(143, 189, 151, 0.884);
   padding: 26px;
- 
   text-align: center;
 }
 
 .image-card img {
   display: block;
-  margin-left: -15px ;
-  width: 160px;
-  height: 120px;
+  margin-left: -20px ;
+  margin-top:-20px;
+  width: 220px;
+  height: 220px;
   border-radius: 5px;
   text-align: center;
 }
@@ -348,7 +364,7 @@ h1 {
 
 .image-card p {
   width: 170px;
-  height: 100px;
+  height: 180px;
   background-size: cover;
   background-color: rgb(244, 246, 247);
   background-position: center;
@@ -369,7 +385,7 @@ h1 {
         color: #fff;
         padding: 10px 40px;
         border-radius: 12px;
-        font-size: 14px;
+        font-size: 20px;
   background-color: #31b8bd;
 }
 

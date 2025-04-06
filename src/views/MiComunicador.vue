@@ -1,5 +1,5 @@
 <template>
-   <h1>MI COMUNICADOR</h1> 
+
     <div class="mi-comunicador">
       
     
@@ -34,32 +34,32 @@
   <style scoped>
 
   h1 {
-    display:flex;
-  background: linear-gradient(45deg, #4426f0, #61d495);
+  display:flex;
+  background: linear-gradient(45deg, #2f11db, #09c75e);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   font-size: xx-large;
   text-align:justify;
-  margin-top:-60px ;
-  margin-left: -160px;
+  margin-top:-90px ;
+  margin-left: -170px;
   padding:60px;
 }
 .grid {
   display: grid;
   grid-template-columns: repeat(2, 150px);
   row-gap: 10px;
-  column-gap: 40px;
+  column-gap: 100px;
   margin: 20px auto;
-  margin-left: -145px;
+  margin-left: -165px;
   margin-bottom: -20px;
   margin-top: -60px;
 }
 
 .button{
-  width: 150px;
-  height: 130px;
+  width: 190px;
+  height: 210px;
   background-size: cover;
-  background-color: rgb(29, 105, 143);
+  background-color: rgb(63, 148, 190);
   background-position:center;
   border: none;
   cursor: pointer;
@@ -70,21 +70,22 @@
         content: attr(data-text);
         position:inherit;
         bottom: 10px;
-        left: 50%;
+      width: 100px;
         transform: translateX(-50%);
-        background-color: rgba(18, 76, 122, 0.929);
+        background-color: rgba(44, 161, 116, 0.929);
         color: #fff;
         padding: 10px 40px;
         border-radius: 5px;
-        font-size: 14px;
+        font-size: 24px;
     }
 .image-card {
   position: relative;
   display: inline-block; 
   overflow: hidden;
+  align-items: center;
   background: white;
-  width: 130px;
-  height: 120px;
+  width: 180px;
+  height: 230px;
   border-radius: 12px;
   box-shadow: 2px 4px 10px rgba(143, 189, 151, 0.884);
   padding: 26px;
@@ -92,37 +93,39 @@
 }
 .image-card img {
   display: block;
-  margin-left: -15px ;
+  margin-left: -20px ;
   margin-top: -15px;
-  width: 160px;
-  height: 120px;
-  border-radius: 5px;
+  width: 220px;
+  height: 220px;
+  border-radius: 12px;
 }
 .image-card p {
   width: 170px;
-  height: 100px;
+  height: 180px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  color: #07BEB8;
   background-size: cover;
-  background-color: rgb(244, 246, 247);
+  background-color: rgb(251, 255, 253);
   background-position: center;
   border-radius: 12px;
   cursor: pointer;
   margin: 5px;
-  margin-left:  -20px;
+  
   
 }
 
 .image-card p:hover {
   content: attr(data-text);
-        position:inherit;
+      position:relative;
         bottom: 10px;
         left: 50%;
         transform: translateX(-50%);
-        background-color: rgba(88, 154, 207, 0.929);
-        color: #fff;
+        color: #ffffff;
         padding: 10px 40px;
         border-radius: 12px;
-        font-size: 14px;
-  background-color: #31b8bd;
+        font-size: 20px;
+  background-color: #44ccf5;
 }
 
 
@@ -140,6 +143,7 @@
 
   
 .no {
+  
   background-color: rgb(167, 11, 11);
   color: white;
   margin-left: -110px;
@@ -149,8 +153,9 @@
 .si {
   background-color: rgb(3, 80, 42);
   color: white;
-  margin-left: 80px;
-  margin-top: -30px;
+  margin-left: 60px;
+  
+  
   
   
 }

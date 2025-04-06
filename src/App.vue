@@ -144,8 +144,8 @@ header {
   height: 80px;
   background: linear-gradient(to bottom, #4153b4, #87d3ce);
   margin-left: -10px;
-  gap:35px;
-  padding: 0 40px;
+  gap:65px;
+  padding: 0  40px;
 
 
 .menu-toggle {

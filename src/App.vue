@@ -81,7 +81,9 @@
 
     
     <main>
-      <router-view></router-view>
+      <MiComunicador v-if="showMiComunicador" />
+      <router-view />
+     
     </main>
 
   </div>
@@ -116,7 +118,6 @@ function toggleNavbar() {
 function closeNavbar() {
   isNavbarOpen.value = false
 }
-
 </script>
 
 
@@ -144,7 +145,7 @@ header {
   height: 80px;
   background: linear-gradient(to bottom, #4153b4, #87d3ce);
   margin-left: -10px;
-  gap:65px;
+  gap:40px;
   padding: 0  40px;
 
 
@@ -319,6 +320,7 @@ main {
  margin-left: 10px;
   margin-top: -90px;
   padding: 150px;
+  color: transparent;
 }
 
     .grid {

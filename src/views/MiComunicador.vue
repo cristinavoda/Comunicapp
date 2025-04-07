@@ -122,11 +122,11 @@
         bottom: 10px;
         left: 50%;
         transform: translateX(-50%);
-        color: #ffffff;
+        color: #1479a1;
         padding: 10px 40px;
         border-radius: 12px;
         font-size: 20px;
-  background-color: #44ccf5;
+  background-color: #f4f6f7;
 }
 
 
@@ -147,19 +147,21 @@
   
   background-color: rgb(167, 11, 11);
   color: white;
-  margin-left: -110px;
+  margin-left: -60px;
   margin-top: 40px;
 }
 
 .si {
   background-color: rgb(3, 80, 42);
   color: white;
-  margin-left: 60px;
-  
-  
-  
-  
+  margin-left: 60px; 
+  margin-top: 40px;
 }
+  
+  
+  
+  
+
 
 </style>
   

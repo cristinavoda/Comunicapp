@@ -313,7 +313,6 @@ h1 {
   grid-template-columns: repeat(2, 150px);
   row-gap: 10px;
   column-gap: 100px;
- 
   margin: 20px auto;
   margin-left: -150px;
 }
@@ -343,7 +342,7 @@ h1 {
   width: 180px;
   height: 230px;
   border-radius: 12px;
-  box-shadow: 2px 4px 10px rgba(143, 189, 151, 0.884);
+  box-shadow: 2px 4px 10px rgba(115, 228, 194, 0.884);
   padding: 26px;
   text-align: center;
 }
@@ -359,14 +358,16 @@ h1 {
 }
 
 .image-text-button:hover {
-  background-color: #6392c4;
+  background-color:  #ffffff;
+  color:#0d7575;
 }
 
 .image-card p {
   width: 170px;
   height: 180px;
   background-size: cover;
-  background-color: rgb(244, 246, 247);
+  background-color: #ffffff; 
+  color: #026e8f;
   background-position: center;
   border-radius: 12px;
   cursor: pointer;
@@ -381,12 +382,12 @@ h1 {
         bottom: 10px;
         left: 50%;
         transform: translateX(-50%);
-        background-color: rgba(88, 154, 207, 0.929);
-        color: #fff;
+        background-color: #ffffff; 
+        color: #26ecd2;
         padding: 10px 40px;
         border-radius: 12px;
-        font-size: 20px;
-  background-color: #31b8bd;
+        font-size: 23px;
+  
 }
 
 
@@ -426,13 +427,12 @@ h1 {
 .no {
   background-color: rgb(167, 11, 11);
   color: white;
-  margin-left: -70px;
 }
 
 .si {
   background-color: rgb(3, 80, 42);
   color: white;
-  margin-left: 30px;
+  margin-left: 40px;
   
 }
 </style>

@@ -1,88 +1,116 @@
 <template>
   <div class="about">
-    <h1>Functionamiento</h1>
-    <p>  COMUNICADOR es una aplication para personas no verbales (autismo, ictus, parálisis cerebral, Alzheimer).</p>
-<h2> Comunicador 
-     es un DEMO , con imágenes y  voz al hacer click sobre las palabras .</h2>
+    <p>Funcionamiento</p>
+    <h2>COMUNICADOR es una aplicación para personas no verbales (autismo, ictus, parálisis cerebral, Alzheimer).</h2>
 
-<h3> Actualizar-Comunicador : Personaliza el Comunicador con imágenes y palabras adaptadas.
-Subir imagen personal: Reemplaza imágenes y edita palabras.
-Buscar en Pixabay: Encuentra imágenes en Internet.</h3>
 
-<h4>MiComunicador  es el Comunicador del usuario , con sus imagenes proprias segun sus necesidades, y  voz al hacer click sobre las palabras.</h4>
+    <h2>COMUNICADOR es un DEMO, con imágenes y voz al hacer click sobre las palabras.</h2>
 
-<h5> Contacto : Para dudas o ayuda ,mandar un mesaje al autor de la aplication. </h5>
- 
+    <h3>ACTUALIZAR-COMUNICADOR: Personaliza el Comunicador con imágenes y palabras adaptadas.</h3>
+
+    <hr class="step-divider">
+      <h4>Opción 1: Subir una imagen personal</h4>
+      <hr class="step-divider">
+
+      
+        <p>El usuario selecciona una imagen desde su dispositivo.</p>
+        <p>Escribe un texto asociado a la imagen (puede ser una frase corta o lo que se necesite).</p>
+        <p>El usuario luego elige la imagen que desea reemplazar en la aplicación.</p>
+        <p>Pulsa el botón "Reemplazar" para actualizar la imagen en la aplicación.</p>
+      
+   
+
+    <hr class="step-divider">
+
+  
+      <h4>Opción 2: Buscar una imagen en Internet (Pixabay)</h4>
+      <hr class="step-divider">
+      
+        <p>El usuario escribe una palabra descriptiva para buscar una imagen (por ejemplo, "gato", "niño", "paisaje").</p>
+        <p>Al pulsar el botón azul, se mostrarán 6 imágenes relacionadas con la búsqueda.</p>
+        <p>El usuario selecciona la imagen que desea utilizar.</p>
+        <p>Pulsa el botón "Guardar" para agregar la imagen seleccionada.</p>
+        <p>Escribe el texto que corresponde a la imagen según las necesidades del usuario.</p>
+      
+    
+
+    <hr class="step-divider">
+
+    <h4>MI-COMUNICADOR es el Comunicador del usuario, con sus imágenes propias según sus necesidades, y voz al hacer click sobre las palabras.</h4>
+
+    <h5>CONTACTO: Para dudas o ayuda, mandar un mensaje al autor de la aplicación.</h5>
   </div>
 </template>
 
-<style>
-
-
-
-@media (max-width: 300px) {
-  .about {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-  }
+<style scoped>
+.about {
+  font-family: 'Poppins', sans-serif;
+  margin: 20px;
 }
 
-h1 {font-size: xx-large;
+h1 {
+  font-size: xx-large;
   margin-left: -150px;
   font-weight: bold;
   background: linear-gradient(45deg, #0535d3, #43ddd5); 
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  display: inline-block}
+  display: inline-block;
+  margin-top: -70px;
+}
 
-p {margin-left: -130px ;
-background: linear-gradient(45deg, #1916d4, #43ddd5);
--webkit-background-clip: text;
+p {
+  margin-left: -10px;
+  background: linear-gradient(45deg, #1916d4, #43ddd5);
+  -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   display: inline-block;
   font-size: medium;
-  font-family:'Poppins', sans-serif;
   font-weight: 800;
 }
 
+h2, h3, h4, h5 {
+  background: linear-gradient(45deg, #049bf3, #1c3be9);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+  padding: 10px;
+  margin-left: -20PX;
+}
 
 h2 {
   font-size: medium;
-  background: linear-gradient(45deg, #049bf3, #1c3be9); 
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  display: inline-block}
+  margin-left: -170px;
+}
 
-
-
-h3 {font-size: medium;
-  margin-left: -150px;
+h3 {
+  font-size: medium;
+  margin-left: -170px;
   font-weight: bold;
-  background: linear-gradient(45deg, #2a2dca, #43ddd5); 
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  display: inline-block}
+}
 
-  h4 {font-size: medium;
-   font-weight: bold;
-   margin-left: -50px;
-  
-   margin-top: 10px;
-  background: linear-gradient(45deg, #0f88b8, #0b42db); /* Cambia los colores aquí */
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  display: inline-block}
-
-
-  h5 {font-size: medium;
-  margin-left: -150px;
-  margin-top: 30px;
+h4 {
+  font-size: medium;
   font-weight: bold;
-  background: linear-gradient(45deg, #1b10b6, #43ddd5); /* Cambia los colores aquí */
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  display: inline-block}
+  margin-left: -170px;
+}
+h5 {
+  font-size: medium;
+  font-weight: bold;
+  margin-left: -170px;
+}
+
+.step {
+  margin-bottom: 20px;
+}
+
+.step-divider {
+  border: none;
+  height: 2px;
+  background-color: #ccc;
+  margin: 30px 0;
+}
+
 
 
 </style>

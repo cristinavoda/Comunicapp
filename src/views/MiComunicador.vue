@@ -145,16 +145,10 @@
 }
 .botones-container {
     display: flex;
-    justify-content: center; /* Centra los botones horizontalmente */
-    align-items: center; /* Alinea verticalmente */
-    gap: 10px; /* Espaciado entre botones */
-}
-
-.boton {
-    width: 100px;  /* Ajusta el ancho según necesites */
-    height: 50px;  /* Ajusta el alto */
-    font-size: 20px;
-    text-align: center;
+    justify-content: center; 
+    align-items: center; 
+    gap: 10px;
+    margin-left: -150px;
 }
 
   
@@ -162,14 +156,14 @@
   
   background-color: rgb(167, 11, 11);
   color: white;
-  margin-left: -460px;
+   
   margin-top: 40px;
 }
 
 .si {
   background-color: rgb(3, 80, 42);
   color: white;
-  margin-left: -360px;
+ 
   margin-top: 40px;
 }
   

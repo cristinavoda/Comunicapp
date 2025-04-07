@@ -10,8 +10,10 @@
         </div>
       </div>
   
+      <div class="botones-container">
       <button id="no-button" class="button no" @click="speakText('NO')">NO</button>
       <button id="si-button" class="button si" @click="speakText('SÍ')">SÍ</button>
+    </div>
     </div>
   </template>
   
@@ -141,20 +143,33 @@
   cursor: pointer;
   margin-left: 10px;
 }
+.botones-container {
+    display: flex;
+    justify-content: center; /* Centra los botones horizontalmente */
+    align-items: center; /* Alinea verticalmente */
+    gap: 10px; /* Espaciado entre botones */
+}
+
+.boton {
+    width: 100px;  /* Ajusta el ancho según necesites */
+    height: 50px;  /* Ajusta el alto */
+    font-size: 20px;
+    text-align: center;
+}
 
   
 .no {
   
   background-color: rgb(167, 11, 11);
   color: white;
-  margin-left: -60px;
+  margin-left: -460px;
   margin-top: 40px;
 }
 
 .si {
   background-color: rgb(3, 80, 42);
   color: white;
-  margin-left: 60px; 
+  margin-left: -360px;
   margin-top: 40px;
 }
   

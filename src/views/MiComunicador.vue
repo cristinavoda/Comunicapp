@@ -144,12 +144,11 @@
   margin-left: 10px;
 }
 .botones-container {
-    display: flex;
-    justify-content: center; 
-    align-items: center; 
+    display:flex;
+    justify-content:flex-start; 
+    align-items:flex-start; 
     gap: 10px;
-    margin-left: -150pxnpm run dev
-    ;
+    margin-left: -150px;
 }
 
   

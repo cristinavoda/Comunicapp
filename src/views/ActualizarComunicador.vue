@@ -57,9 +57,10 @@
     </div>
 
     <button v-if="hasChanges" class="save-button" @click="saveChanges">Guardar Cambios</button>
-
+    <div class="botones-container">
     <button id="no-button" class="button no" @click="speakText('NO')">NO</button>
     <button id="si-button" class="button si" @click="speakText('SÍ')">SÍ</button>
+  </div>
   </div>
 </template>
 
@@ -201,9 +202,12 @@ h1 {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   font-size: x-large;
-  text-align: center;
+  text-align:start;
   margin-top:-30px ;
-  margin-left: -140px;
+  margin-left:0%;
+  margin-right: auto;
+  display: block; 
+  padding: 10px; 
 }
 
 .upload-section {
@@ -422,6 +426,22 @@ h1 {
   text-align: center;
   margin: 20px auto;
   width: 200px;}
+  .botones-container {
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    gap: 10px;
+    margin-left: -150pxnpm run dev
+    ;
+}
+
+.botones-container {
+    display: flex;
+    justify-content:flex-start ; 
+    align-items:flex-start; 
+    gap: 10px;
+    margin-left: -150px;
+}
 
   
 .no {

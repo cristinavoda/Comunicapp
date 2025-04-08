@@ -1,21 +1,20 @@
 <template>
   <div class="about">
-    <p>Funcionamiento</p>
-    <h2>COMUNICADOR es una aplicación para personas no verbales (autismo, ictus, parálisis cerebral, Alzheimer).</h2>
+    <h1>Personalizar tu Comunicador</h1>
+    
 
+    
 
-    <h2>COMUNICADOR es un DEMO, con imágenes y voz al hacer click sobre las palabras.</h2>
-
-    <h3>ACTUALIZAR-COMUNICADOR: Personaliza el Comunicador con imágenes y palabras adaptadas.</h3>
+    <h2>ACTUALIZAR-COMUNICADOR - Personaliza el Comunicador con imágenes y palabras adaptadas.</h2>
 
     <hr class="step-divider">
-      <h4>Opción 1: Subir una imagen personal</h4>
+      <h3>Opción 1: Subir una imagen personal</h3>
       <hr class="step-divider">
 
       
-        <p>El usuario selecciona una imagen desde su dispositivo.</p>
+        <p>Selecciona una imagen desde su dispositivo.</p>
         <p>Escribe un texto asociado a la imagen (puede ser una frase corta o lo que se necesite).</p>
-        <p>El usuario luego elige la imagen que desea reemplazar en la aplicación.</p>
+        <p>Elige la imagen que desea reemplazar en la aplicación.</p>
         <p>Pulsa el botón "Reemplazar" para actualizar la imagen en la aplicación.</p>
       
    
@@ -26,19 +25,21 @@
       <h4>Opción 2: Buscar una imagen en Internet (Pixabay)</h4>
       <hr class="step-divider">
       
-        <p>El usuario escribe una palabra descriptiva para buscar una imagen (por ejemplo, "gato", "niño", "paisaje").</p>
-        <p>Al pulsar el botón azul, se mostrarán 6 imágenes relacionadas con la búsqueda.</p>
-        <p>El usuario selecciona la imagen que desea utilizar.</p>
+        <p>Escribe una palabra descriptiva para buscar una imagen (por ejemplo, "gato", "niño", "paisaje").</p>
+        <p>Al pulsar el botón azul(buscar), se mostrarán 6 imágenes relacionadas con la búsqueda.</p>
+        <p>Selecciona la imagen que desea utilizar.</p>
         <p>Pulsa el botón "Guardar" para agregar la imagen seleccionada.</p>
         <p>Escribe el texto que corresponde a la imagen según las necesidades del usuario.</p>
       
     
 
     <hr class="step-divider">
+    <h5>COMUNICADOR - es un DEMO, con imágenes y voz al hacer click sobre las palabras.</h5>
 
-    <h4>MI-COMUNICADOR es el Comunicador del usuario, con sus imágenes propias según sus necesidades, y voz al hacer click sobre las palabras.</h4>
 
-    <h5>CONTACTO: Para dudas o ayuda, mandar un mensaje al autor de la aplicación.</h5>
+    <h4>MI-COMUNICADOR -  es el Comunicador del usuario, con sus imágenes propias según sus necesidades, y voz al hacer click sobre las palabras.</h4>
+
+    <h5>CONTACTO -  Para dudas o ayuda, sugerencias , mandar un mensaje al autor de la aplicación.</h5>
   </div>
 </template>
 

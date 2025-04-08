@@ -1,6 +1,7 @@
 {
     "name": "Comunicador",
     "short_name": "Comunicador",
+    "description": "Aplicación para ayudar a personas que no hablan a comunicarse.",
     "icons": [
       {
         "src": "/app-icon.png",

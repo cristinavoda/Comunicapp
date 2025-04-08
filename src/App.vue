@@ -118,6 +118,38 @@ function toggleNavbar() {
 function closeNavbar() {
   isNavbarOpen.value = false
 }
+
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/service-worker.js').then((registration) => {
+    console.log('Service Worker registrado con éxito:', registration);
+  }).catch((error) => {
+    console.log('Error al registrar el Service Worker:', error);
+  });
+}
+let deferredPrompt;
+window.addEventListener('beforeinstallprompt', (e) => {
+  // Prevenir la aparición del prompt por defecto
+  e.preventDefault();
+  // Guardar el evento para usarlo después
+  deferredPrompt = e;
+  // Mostrar el botón de instalación (puedes agregarlo a tu navbar)
+  document.getElementById('installButton').style.display = 'block';
+
+  // Al hacer clic en el botón, mostrar el prompt
+  document.getElementById('installButton').addEventListener('click', () => {
+    deferredPrompt.prompt();
+    deferredPrompt.userChoice.then((choiceResult) => {
+      if (choiceResult.outcome === 'accepted') {
+        console.log('El usuario aceptó la instalación');
+      } else {
+        console.log('El usuario rechazó la instalación');
+      }
+      deferredPrompt = null;
+    });
+  });
+});
+
+
 </script>
 
 

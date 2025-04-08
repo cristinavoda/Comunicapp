@@ -144,9 +144,12 @@ const store = createStore({
      saveImage({ commit, state }, image) {
       const updatedImages = [...state.savedImages, image];
       commit("SET_IMAGES", updatedImages);
+      localStorage.setItem("savedImages", JSON.stringify(updatedImages));
+
     },
      loadSavedImages({ commit }) {
       commit("LOAD_SAVED_IMAGES");
+      
     },
      loadActulizarComunicador({ commit }) {
         const savedData = localStorage.getItem("ActualizarcomunicadorData");

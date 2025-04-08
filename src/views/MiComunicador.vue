@@ -148,7 +148,8 @@
     justify-content: center; 
     align-items: center; 
     gap: 10px;
-    margin-left: -150px;
+    margin-left: -150pxnpm run dev
+    ;
 }
 
   

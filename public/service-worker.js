@@ -4,12 +4,12 @@ self.addEventListener('install', event => {
   event.waitUntil(
     caches.open('comunicador-cache').then((cache) => {
       return cache.addAll([
-        '/', // Página de inicio
-        '/index.html', // HTML
-        '/app.js', // JS
-        '/styles.css', // CSS
-        '/icons/icon-192x192.png', // Iconos
-        '/icons/icon-512x512.png',
+        '/',
+        '/index.html', 
+        '/app.js', 
+        '/styles.css', 
+        '/icons/icon-32x32.png', 
+        '/icons/icon-72x72.png',
       ]);
     })
   );

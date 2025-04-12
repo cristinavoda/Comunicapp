@@ -91,7 +91,7 @@ export default {
  
 h2 { font-size: 2rem;
     font-weight: bold;
-    background: linear-gradient(45deg, #1e1bce, #a1ebe7); /* Cambia los colores aquí */
+    background: linear-gradient(45deg, #1e1bce, #a1ebe7); 
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     display: inline-block;

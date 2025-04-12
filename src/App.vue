@@ -3,8 +3,11 @@
 
    <header>
       <button 
-        class="menu-toggle" 
+        class="menu-toggle"
+         @mouseover="openSidebar"
+          @mouseleave="closeSidebar"
         @click="toggleNavbar"
+        :class="{ 'hovered': isHovered }"
         :aria-expanded="isNavbarOpen.toString()"
         aria-controls="sidebar"
         aria-label="Abrir menú de navegación">
@@ -106,6 +109,7 @@ onMounted(() => {
 
 
 const isNavbarOpen = ref(false)
+const isHovered = ref(false)
 
 function toggleNavbar() {
   isNavbarOpen.value = !isNavbarOpen.value
@@ -114,6 +118,9 @@ function toggleNavbar() {
       isNavbarOpen.value = false;
     }, 7000);
   }
+}
+function openSidebar() {
+  isHovered.value = true
 }
 function closeNavbar() {
   isNavbarOpen.value = false
@@ -128,14 +135,14 @@ if ('serviceWorker' in navigator) {
 }
 let deferredPrompt;
 window.addEventListener('beforeinstallprompt', (e) => {
-  // Prevenir la aparición del prompt por defecto
+  
   e.preventDefault();
-  // Guardar el evento para usarlo después
+  
   deferredPrompt = e;
-  // Mostrar el botón de instalación (puedes agregarlo a tu navbar)
+  
   document.getElementById('installButton').style.display = 'block';
 
-  // Al hacer clic en el botón, mostrar el prompt
+  
   document.getElementById('installButton').addEventListener('click', () => {
     deferredPrompt.prompt();
     deferredPrompt.userChoice.then((choiceResult) => {
@@ -147,7 +154,7 @@ window.addEventListener('beforeinstallprompt', (e) => {
       deferredPrompt = null;
     });
   });
-});
+})
 
 
 </script>
@@ -182,6 +189,7 @@ header {
 
 
 .menu-toggle {
+  
   width: 60px;
   height: 42px;
   padding: 1PX;
@@ -193,11 +201,14 @@ header {
   margin-left: -26px;
   margin-top: 13px;;
   margin-bottom:8px;
-  
+  transition: background-color 0.3s, color 0.3s;
   
 }
 
-
+.menu-toggle:hover {
+  background-color: #1edbcb; /* Cambia el color de fondo al hacer hover */
+  color: #f0ebeb; /* Cambia el color del texto */
+}
 .router-link-exact-active, 
 .router-link-active {
   text-decoration: none !important;

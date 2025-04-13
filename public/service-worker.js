@@ -1,16 +1,16 @@
 self.addEventListener('install', event => {
-  console.log('Service Worker instalado');
+  console.log('✅ Service Worker instalado');
 
   event.waitUntil(
-    caches.open('comunicador-cache').then((cache) => {
+    caches.open('comunicador-cache').then(cache => {
       return cache.addAll([
         '/',
-        '/index.html', 
-        '/app.js', 
-        '/styles.css', 
-        '/icons/icon-32x32.png', 
-        '/icons/icon-72x72.png',
-        '/manifest.json' // 👈 muy importante si usas PWA
+        '/index.html',
+        '/app.js',
+        '/styles.css',
+        '/manifest.json',
+        '/icons/icon-32x32.png',
+        '/icons/icon-72x72.png'
       ]);
     })
   );
@@ -19,50 +19,56 @@ self.addEventListener('install', event => {
 });
 
 self.addEventListener('activate', event => {
-  console.log('Service Worker activado');
+  console.log('⚡ Service Worker activado');
+
   event.waitUntil(
     caches.keys().then(cacheNames => {
       return Promise.all(
         cacheNames.map(cache => {
           if (cache !== 'comunicador-cache') {
-            console.log('Borrando caché antigua:', cache);
+            console.log('🧹 Borrando caché antigua:', cache);
             return caches.delete(cache);
           }
         })
       );
     })
   );
+
   self.clients.claim();
 });
 
 self.addEventListener('fetch', event => {
-  console.log('Interceptando petición a:', event.request.url);
+  // No interceptar extensiones o scripts externos
+  if (event.request.url.startsWith('chrome-extension')) return;
+
+  console.log('🌐 Interceptando:', event.request.url);
 
   event.respondWith(
     caches.match(event.request).then(cachedResponse => {
-      if (cachedResponse) {
-        return cachedResponse;
-      }
+      if (cachedResponse) return cachedResponse;
 
-      return fetch(event.request).then((response) => {
-        // Verifica que la respuesta sea válida
-        if (!response || response.status !== 200 || response.type !== 'basic') {
-          return response;
-        }
+      return fetch(event.request)
+        .then(response => {
+          if (
+            !response || 
+            response.status !== 200 || 
+            response.type !== 'basic'
+          ) {
+            return response;
+          }
 
-        const responseToCache = response.clone();
+          const responseClone = response.clone();
 
-        if (!event.request.url.includes('/api/')) {
-          caches.open('comunicador-cache').then((cache) => {
-            cache.put(event.request, responseToCache);
+          caches.open('comunicador-cache').then(cache => {
+            cache.put(event.request, responseClone);
           });
-        }
 
-        return response;
-      }).catch(error => {
-        console.error('Error en fetch del SW:', error);
-        throw error;
-      });
+          return response;
+        })
+        .catch(error => {
+          console.error('❌ Error en fetch:', error);
+          return new Response('Offline', { status: 503 });
+        });
     })
   );
 });

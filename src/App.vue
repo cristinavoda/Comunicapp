@@ -76,9 +76,17 @@
 
 
               </li>
-            
-
-         
+              <li><button 
+      
+      class="btn-instalar-app"
+      aria-label="Instalar aplicación">
+      Instalar App
+    </button>
+    <p v-if="!deferredPrompt" class="mensaje-info">
+    
+</p>
+</li>
+              
              
         </ul>
       </nav>
@@ -158,7 +166,26 @@ window.addEventListener('beforeinstallprompt', (e) => {
   });
 })
 
+const instalarApp = () => {
+  if (deferredPrompt) {
+    deferredPrompt.prompt()
+    deferredPrompt.userChoice.then((choiceResult) => {
+      if (choiceResult.outcome === 'accepted') {
+        console.log('✅ App instalada')
+      } else {
+        console.log('❌ Instalación cancelada')
+      }
+      deferredPrompt = null
+    })
+  }
+}
 
+onMounted(() => {
+  window.addEventListener('beforeinstallprompt', (event) => {
+    event.preventDefault()
+    deferredPrompt = event
+  })
+})
 </script>
 
 

@@ -19,11 +19,11 @@
               aria-label="Ir a la página del comunicador" 
               @click="Comunicador"> Comunicador</router-link></button>
 
-              <button class="btn-mi-comunicador"> <router-link 
+    <button class="btn-mi-comunicador"> <router-link 
               to="/mi-comunicador" 
               aria-label="Ir a la página del mi-comunicador" 
               @click="Mi-Comunicador">MiComunicador</router-link></button>
-      
+
     </header>
     
    
@@ -76,6 +76,16 @@
 
 
               </li>
+              <li><button 
+      
+      class="btn-instalar-app"
+      aria-label="Instalar aplicación">
+      Instalar App
+    </button>
+    <p v-if="!deferredPrompt" class="mensaje-info">
+    
+</p>
+</li>
               
              
         </ul>
@@ -156,7 +166,26 @@ window.addEventListener('beforeinstallprompt', (e) => {
   });
 })
 
+const instalarApp = () => {
+  if (deferredPrompt) {
+    deferredPrompt.prompt()
+    deferredPrompt.userChoice.then((choiceResult) => {
+      if (choiceResult.outcome === 'accepted') {
+        console.log('✅ App instalada')
+      } else {
+        console.log('❌ Instalación cancelada')
+      }
+      deferredPrompt = null
+    })
+  }
+}
 
+onMounted(() => {
+  window.addEventListener('beforeinstallprompt', (event) => {
+    event.preventDefault()
+    deferredPrompt = event
+  })
+})
 </script>
 
 
@@ -190,7 +219,7 @@ header {
 
 .menu-toggle {
   
-  width: 60px;
+  width: 40px;
   height: 42px;
   padding: 1PX;
   color: #42acc7;
@@ -198,7 +227,7 @@ header {
   border: none;
   cursor: pointer;
   margin-right:150px; 
-  margin-left: -26px;
+  margin-left: -35px;
   margin-top: 13px;;
   margin-bottom:8px;
   transition: background-color 0.3s, color 0.3s;
@@ -206,8 +235,8 @@ header {
 }
 
 .menu-toggle:hover {
-  background-color: #1edbcb; /* Cambia el color de fondo al hacer hover */
-  color: #f0ebeb; /* Cambia el color del texto */
+  background-color: #1edbcb; 
+  color: #f0ebeb; 
 }
 .router-link-exact-active, 
 .router-link-active {
@@ -247,10 +276,10 @@ header .btn-comunicador, header .btn-mi-comunicador {
   text-decoration: none !important; 
   font-family: 'Poppins', sans-serif;
   color: #07BEB8;
-  font-size: 18px;
+  font-size: 22px;
   font-weight: 600;
   text-shadow: 1px 1px 2px rgba(30, 170, 123, 0.3);
-  font-size: 20px; 
+  font-size: 18px; 
   background-color: #f6f9fa; 
   padding: 10px 10px; 
   display: inline-block; 
@@ -270,7 +299,6 @@ header .btn-comunicador, header .btn-mi-comunicador {
 .btn-mi-comunicador{
   text-decoration: none !important;
   color: rgb(38, 142, 226);
-  
   font-family: 'Poppins', sans-serif;
   font-size: 18px;
   font-weight: 600;
@@ -292,14 +320,14 @@ header .btn-comunicador, header .btn-mi-comunicador {
 
 
 .btn-comunicador:hover {
-  background-color: #14969b; 
+  background-color: #c6d7d8; 
   color:#eaeedd;
   text-decoration: none;
 }
 
 
 .btn-mi-comunicador:hover {
-  background-color: #2ba1a5; 
+  background-color: #b5dcdd; 
   text-decoration: none;
 }
 
@@ -308,7 +336,29 @@ header .btn-comunicador, header .btn-mi-comunicador {
 
 .router-link {
   text-decoration: none !important;
-  color: inherit; /* Mantener el color si se desea */
+  color: inherit; 
+}
+.btn-instalar-app {
+  margin-left: -5px;
+  padding: 0.5rem 1rem;
+  display: inline-block; 
+  background: transparent;
+  color: rgb(241, 247, 246);
+  margin-top: 20px; 
+  margin-left: -15px;
+  margin-bottom: auto;
+  font-family: 'Poppins', sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  border: none;
+ 
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-instalar-app:hover {
+ color: #eaeedd;
+ background-color: #07BEB8;
 }
 
 .sidebar {

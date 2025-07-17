@@ -48,10 +48,11 @@
 <style scoped>
 .about {
   font-family: 'Poppins', sans-serif;
-  margin: 20px auto;
+  margin: 600px;
   max-width: 90%; 
-  width: 100%;
+  width: 90%;
   padding: 20px;
+
 }
 
 h1 {
@@ -118,6 +119,10 @@ h2, h3, h4, h5 {
 
   p {
     font-size: 1rem;
+    white-space: normal !important;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+
   }
 }
 </style>

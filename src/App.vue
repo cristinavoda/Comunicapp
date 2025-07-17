@@ -187,18 +187,18 @@ body {font-family: Arial, sans-serif;
   overflow-x: hidden;
    
 }
-
 header {
   display: flex;
-  align-items: normal;  
-  justify-content: flex-start;   
-  width: 100%;
-  max-width: 100vw;
+  align-items: center; 
+  justify-content: flex-start;
+  width: 100vw;        
   height: 80px;
   background: linear-gradient(to bottom, #4153b4, #87d3ce);
-  padding: 0 3px;
-  gap: 20px;                    
+  padding: 0 10px;     
+  box-sizing: border-box; 
+  gap: 20px;
 }
+
 
 header button, 
 .btn-comunicador, 

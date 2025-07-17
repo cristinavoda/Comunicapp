@@ -20,7 +20,7 @@
     display: flex;
     gap: 1rem;
     text-decoration: none;
-    color: aqua;
+    color: rgb(21, 138, 128);
   }
   router-link {
     text-decoration: none;

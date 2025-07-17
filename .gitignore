@@ -13,11 +13,12 @@ dist
 dist-ssr
 coverage
 *.local
+COMPONENTES
 
 /cypress/videos/
 /cypress/screenshots/
 
-# Editor directories and files
+
 .vscode/*
 !.vscode/extensions.json
 .idea

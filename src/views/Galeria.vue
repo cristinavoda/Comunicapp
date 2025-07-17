@@ -1,24 +1,23 @@
 <template>
-    <div class="gallery">
-      <h1>GALERIA</h1>
-  
-      <div class="search-container">
-  
-        
-        <label class="custom-file-upload">
-          Subir imagen personal
-          <input type="file" @change="handleFileUpload" accept="image/*" hidden />
-        </label>
-  
-        <input
-      type="text"
-      v-model="searchQuery"
-      @keyup.enter="fetchImages"
-      placeholder="Escribe una palabra..."
-    /> <button @click="fetchImages" class="search-button">
-      <i class="fas fa-search"></i> 
-    </button>
-     </div>
+  <div class="gallery">
+    <h1>GALERÍA</h1>
+
+    <div class="search-container">
+      <label class="custom-file-upload">
+        Subir imagen personal
+        <input type="file" @change="handleFileUpload" accept="image/*" hidden />
+      </label>
+
+      <input
+        type="text"
+        v-model="searchQuery"
+        @keyup.enter="fetchImages"
+        placeholder="Buscar imagen"
+      />
+      <button @click="fetchImages" class="search-button">
+        <i class="fas fa-search"></i>
+      </button>
+    </div>
 
     <div v-if="loading">Cargando imágenes...</div>
     <div v-if="error">{{ error }}</div>
@@ -36,65 +35,58 @@
         <button @click="addToGallery(image)">Guardar</button>
       </div>
     </div>
-    
 
-    <h2> Mi Galeria</h2>
-    
+    <h2>Mi Galería</h2>
 
     <div class="saved-images">
       <div v-for="image in savedImages" :key="image.id" class="image-card">
-  <img :src="image.previewURL" :alt="image.tags" />
-  
-  <button class="delete-button" @click="removeFromSaved(image.id)">
-    Eliminar
-  </button>
-</div>
-</div>
+        <img :src="image.previewURL" :alt="image.tags" />
+        <button class="delete-button" @click="removeFromSaved(image.id)">
+          Eliminar
+        </button>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-import { mapState ,mapActions } from "vuex";
-import Comunicador from "./Comunicador.vue";
+import { mapState, mapActions } from "vuex";
 
 export default {
   data() {
     return {
       searchQuery: "",
       images: [],
-      savedImages: [], 
-      categories: ["Comida", "Familia", "Hogar", "Salud", "Actividades"],
+      categories: ["Comida", "Familia", "Hogar", "Salud", "Actividades", "Emociones"],
       loading: false,
       error: null,
+      uploadedImage: null,
     };
-    
   },
+
   computed: {
-    ...mapState(["savedImages"]), // Ahora obtenemos las imágenes desde Vuex
+    ...mapState(["savedImages"]),
   },
-  
 
-  methods: {...mapActions(["addToGaleria"]),
-  ...mapActions(["addSavedImage", "removeSavedImage"]),
+  methods: {
+    ...mapActions(["saveImage", "removeSavedImage", "loadSavedImages"]),
 
-    ...mapActions(["addToActualizarCommunicator"]), // Acción para Actualizar-Comunicador
-    hablar(texto) {
-      let utterance = new SpeechSynthesisUtterance(texto);
-      utterance.voice = speechSynthesis.getVoices().find(v => v.name === this.vozSeleccionada);
-      speechSynthesis.speak(utterance);
-    },
-   
-    handleFileUpload(event) {
+  handleFileUpload(event) {
   const file = event.target.files[0];
   if (file) {
     const reader = new FileReader();
     reader.onload = (e) => {
-      this.uploadedImage = e.target.result;
-      this.selectedPixabayImage = null; 
+      const image = {
+        id: Date.now(), 
+        previewURL: e.target.result, 
+        tags: "Imagen personal",
+      };
+      this.saveImage(image); 
     };
     reader.readAsDataURL(file);
   }
 },
+
     async fetchImages() {
       if (!this.searchQuery) return;
       this.loading = true;
@@ -115,43 +107,35 @@ export default {
         this.loading = false;
       }
     },
+
     addToGallery(image) {
-      if (!this.savedImages.some((img) => img.id === image.id)) {
-        this.savedImages.push(image); // Añadir a Imágenes Guardadas
-      }
-      
+      this.saveImage(image);
     },
-   addToActualizarComunicador(image) {
-      this.addgallery(image); // Enviar a Actualizar-Comunicador
-      alert("Imagen añadida a Galeria.");
+
+    removeFromSaved(id) {
+      this.removeSavedImage(id);
     },
+
     selectCategory(category) {
       this.searchQuery = category;
       this.fetchImages();
     },
-       
- 
-  removeFromSaved(id) {
-    this.savedImages = this.savedImages.filter((img) => img.id !== id);
-    if (this.selectedImageId === id) {
-      this.selectedImageId = null; // Restablece la selección al eliminar la imagen
-    }
-  
-},
-  
-    
+  },
+
+  mounted() {
+    this.loadSavedImages();
   },
 };
+</script>
 
-       
-  </script>
+
   
   
   <style scoped >
   
   h1 { font-size: 2rem;
     font-weight: bold;
-    background: linear-gradient(45deg, #2a045c, #43ddd5); /* Cambia los colores aquí */
+    background: linear-gradient(45deg, #2a045c, #43ddd5);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     display: inline-block;
@@ -194,7 +178,7 @@ export default {
     width: 360px;
     margin-left: -165px;
     border: none;
-    border-radius: 5px;
+    border-radius: 15px;
     padding: 25px;
     gap: 35px;
     overflow: hidden; 
@@ -223,13 +207,13 @@ export default {
     outline: none;
     color: rgb(12, 8, 59);
     margin-right: 5px;
-    margin-left: -5px;
+    margin-left:auto;
   }
   .search-button {
     background-color: #323ddb;
     border: 1px solid #10b38f;
     height: 20px;
-    width: 10px;
+    width: 20px;
     cursor: pointer;
     padding: 0 5px;
     border-radius: 5px;
@@ -285,18 +269,60 @@ export default {
     border-radius: 5px;
     cursor: pointer;
   }
+  .categories {
+  margin-top: -100px;
+  margin-left: -170px; 
+  max-width: 400px; 
+  padding: 10px;
+}
+
+.categories h2 {
   
-  h2 {
-    font-size: 2rem;
-    font-weight: bold;
-    background: linear-gradient(45deg, #2a045c, #43ddd5); /* Cambia los colores aquí */
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    display: inline-block;
-    margin-left: -150px;
-    margin-top: 75px;
-  }
-  
+  font-size: 2rem;
+  font-weight: bold;
+  background: linear-gradient(45deg, #2a045c, #43ddd5);
+  -webkit-background-clip: text;  
+  -webkit-text-fill-color: transparent; 
+  display: inline-block;
+  margin-left: -150px;
+  margin-top: 15px;
+}
+
+
+.categories button {
+  background: linear-gradient(to bottom, #3903b6, #85e6d1);
+  display: flex;
+  align-items: left;
+  justify-content: center;
+  width: 100%;
+  border: none;
+  border-radius: 15px;
+  padding: 15px;
+  gap: 5px;
+  overflow: hidden;
+  color: #fff;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-bottom: 10px; 
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.categories button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+ h2 {
+  font-size: 2rem;
+  font-weight: bold;
+  background: linear-gradient(45deg, #2a045c, #43ddd5);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; 
+  display: inline-block;
+  margin-left: -150px;
+  margin-top: 75px;
+}
+
   .saved-images {
     display: grid;
     grid-template-columns: repeat(2, 150px);
@@ -308,7 +334,7 @@ export default {
   .image-card {
     background: white;
     border-radius: 12px;
-    box-shadow: 2px 4px 10px rgba(143, 189, 151, 0.884); /* Sombra suave */
+    box-shadow: 2px 4px 10px rgba(143, 189, 151, 0.884); 
     padding: 16px;
     transition: all 0.3s ease-in-out;
     width: 170px;
@@ -355,7 +381,7 @@ export default {
     bottom: 10px;
     left: 50%;
     transform: translateX(-50%);
-    background: rgba(0, 128, 128, 0.8); /* DarkCyan oscuro */
+    background: rgba(0, 128, 128, 0.8); 
     color: white;
     border: none;
     padding: 8px 12px;

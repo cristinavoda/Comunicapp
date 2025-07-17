@@ -1,31 +1,27 @@
 <template>
   <div id="app">
+<header>
+  <button
+    class="menu-toggle"
+    @mouseover="openSidebar"
+    @mouseleave="closeSidebar"
+    @click="toggleNavbar"
+    :aria-expanded="isNavbarOpen.toString()"
+    aria-controls="sidebar"
+    aria-label="Abrir menú de navegación">
+    ≣
+  </button>
 
-   <header>
-      <button 
-        class="menu-toggle"
-         @mouseover="openSidebar"
-          @mouseleave="closeSidebar"
-        @click="toggleNavbar"
-        :class="{ 'hovered': isHovered }"
-        :aria-expanded="isNavbarOpen.toString()"
-        aria-controls="sidebar"
-        aria-label="Abrir menú de navegación">
-         ≣
-      </button>
-      
-    <button class="btn-comunicador"> <router-link 
-              to="/comunicador" 
-              aria-label="Ir a la página del comunicador" 
-              @click="Comunicador"> Comunicador</router-link></button>
+  <router-link to="/comunicador" class="btn-comunicador">
+    Comunicador
+  </router-link>
 
-    <button class="btn-mi-comunicador"> <router-link 
-              to="/mi-comunicador" 
-              aria-label="Ir a la página del mi-comunicador" 
-              @click="Mi-Comunicador">MiComunicador</router-link></button>
+  <router-link to="/mi-comunicador" class="btn-mi-comunicador">
+    MiComunicador
+  </router-link>
+</header>
 
-    </header>
-    
+  
    
     <aside 
       id="sidebar"
@@ -73,19 +69,9 @@
               @click="closeNavbar">Funcionamiento</router-link></li>
 
               <li><router-link to="/voz">🗣 Configurar Voz</router-link>
-
-
-              </li>
-              <li><button 
-      
-      class="btn-instalar-app"
-      aria-label="Instalar aplicación">
-      Instalar App
-    </button>
-    <p v-if="!deferredPrompt" class="mensaje-info">
-    
-</p>
-</li>
+       </li>
+             
+     
               
              
         </ul>
@@ -197,175 +183,76 @@ body {font-family: Arial, sans-serif;
   gap: 10px;
   margin-left: -20px;
   height: 100vh;
-  background-color: #eaeedd;
+  background-color: #e5f0e9;
   overflow-x: hidden;
    
 }
 
 header {
-  
   display: flex;
-  justify-content:flex-start ;
-  margin-top:-10px;
-  align-items: center;
-  width:100%;
-  max-width: 100vw; 
+  align-items: normal;  
+  justify-content: flex-start;   
+  width: 100%;
+  max-width: 100vw;
   height: 80px;
   background: linear-gradient(to bottom, #4153b4, #87d3ce);
-  margin-left: -10px;
-  gap:40px;
-  padding: 0  40px;
+  padding: 0 3px;
+  gap: 20px;                    
+}
 
+header button, 
+.btn-comunicador, 
+.btn-mi-comunicador {
+  font-family: 'Poppins', sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  height: 20px;
+  margin-top: 20px;
+  background-color: #f6f9fa;
+  color: #07BEB8;
+  padding: 10px 20px;         
+  border: none;
+  cursor: pointer;
+  text-shadow: 1px 1px 2px rgba(30, 170, 123, 0.3);
+  box-shadow: 0 2px 4px rgba(60, 206, 186, 0.2);
+  transition: background-color 0.3s ease, color 0.3s ease;
+  text-decoration: none;
+  border-radius: 8px;
+}
+
+header button:hover,
+.btn-comunicador:hover,
+.btn-mi-comunicador:hover {
+  background-color: #3ecad1;
+  color: #eaeedd;
+  text-decoration: none;
+  box-shadow: #3f0db4;
+  border-radius: 8px;
+}
 
 .menu-toggle {
-  
-  width: 40px;
-  height: 42px;
-  padding: 1PX;
-  color: #42acc7;
-  background:#f6f7f5;
-  border: none;
-  cursor: pointer;
-  margin-right:150px; 
-  margin-left: -35px;
-  margin-top: 13px;;
-  margin-bottom:8px;
-  transition: background-color 0.3s, color 0.3s;
-  
-}
-
-.menu-toggle:hover {
-  background-color: #1edbcb; 
-  color: #f0ebeb; 
-}
-.router-link-exact-active, 
-.router-link-active {
-  text-decoration: none !important;
-  color: #07BEB8;
-}
-
-.btn-comunicador, .btn-mi-comunicador {
-  text-decoration: none !important;
-  color: #07BEB8;
-}
-router-link-exact-inactive, 
-.router-link-inactive {
-  text-decoration: none !important;
-  color:#07BEB8;
-}
-
-.btn-comunicador, .btn-mi-comunicador {
-  text-decoration: none !important;
-}
-
-.router-link {
-  text-decoration: none !important;
-  color:#07BEB8;
-}
-
-header .btn-comunicador, header .btn-mi-comunicador {
-  text-decoration: none !important;
-  color:#07BEB8 !important;
-}
-
-
-
-
-.btn-comunicador{ 
- 
-  text-decoration: none !important; 
-  font-family: 'Poppins', sans-serif;
-  color: #07BEB8;
-  font-size: 22px;
-  font-weight: 600;
-  text-shadow: 1px 1px 2px rgba(30, 170, 123, 0.3);
-  font-size: 18px; 
-  background-color: #f6f9fa; 
-  padding: 10px 10px; 
-  display: inline-block; 
-  text-align: center; 
-  cursor: pointer; 
-  margin-left: -180px;
-  margin-top: 20px; 
-  margin-bottom: auto;
-  box-shadow: 0 2px 4px rgba(60, 206, 186, 0.2);
-  transition: background-color 0.3s ease; 
-  
-}
-.router-link {
-  text-decoration: none !important;
-  color: inherit; /* Mantener el color si se desea */
-}
-.btn-mi-comunicador{
-  text-decoration: none !important;
-  color: rgb(38, 142, 226);
-  font-family: 'Poppins', sans-serif;
-  font-size: 18px;
-  font-weight: 600;
-  text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
   font-size: 20px; 
-  background-color: #f1f5f7; 
-  padding: 10px 10px; 
-  border:#f0eae6; 
-  border-radius: 5px; 
-  display: inline-block; 
-  text-align: center; 
-  cursor: pointer; 
-  margin-left: -30px;
-  margin-top: 20px; 
-  margin-bottom: auto;
-  box-shadow: 0 2px 4px rgba(89, 192, 183, 0.2); 
-  transition: background-color 0.3s ease; 
+  width: 100px;
+  height: 40px;
+  margin-top: 20px;
 }
 
-
-.btn-comunicador:hover {
-  background-color: #c6d7d8; 
-  color:#eaeedd;
-  text-decoration: none;
-}
-
-
-.btn-mi-comunicador:hover {
-  background-color: #b5dcdd; 
-  text-decoration: none;
-}
-
-
-}
 
 .router-link {
+  color: #07BEB8;
   text-decoration: none !important;
-  color: inherit; 
-}
-.btn-instalar-app {
-  margin-left: -5px;
-  padding: 0.5rem 1rem;
-  display: inline-block; 
-  background: transparent;
-  color: rgb(241, 247, 246);
-  margin-top: 20px; 
-  margin-left: -15px;
-  margin-bottom: auto;
-  font-family: 'Poppins', sans-serif;
-  font-size: 18px;
-  font-weight: 600;
-  border: none;
- 
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+  color: inherit;
+  border-radius: 8px;
 }
 
-.btn-instalar-app:hover {
- color: #eaeedd;
- background-color: #07BEB8;
-}
+
+
 
 .sidebar {
   position: fixed;
   top: 18;
   left: -190px;
-  margin-left:-12px ;
+  margin-left: 7px;
   z-index: 1000;  
   width: 170px;
   height: 100%;
@@ -419,7 +306,7 @@ main {
     .grid {
         display: grid;
         grid-template-columns: repeat(2, 150px);
-        row-gap: 10px; /* Espacio entre las filas */
+        row-gap: 10px; 
   column-gap: 70px;
        
     }
@@ -439,7 +326,6 @@ main {
         content: attr(data-text);
         position: absolute;
         bottom: 10px;
-        
         background-color: rgba(28, 132, 180, 0.929);
         color: #ffffff;
         padding: 5px 10px;

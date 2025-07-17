@@ -4,12 +4,12 @@ import ActualizarComunicador from "./views/ActualizarComunicador.vue";
 const store = createStore({
   state: {
     buttons:  JSON.parse(localStorage.getItem("buttons")) ||[
-      { text: "quiero comer", image: "/comer.jpg" },
+      { text: "quiero comer,tengo hambre", image: "/comer.jpg" },
       { text: "Agua", image: "/agua.jpg" },
       { text: "Ir a pasear", image: "/pasear.jpg" },
       { text: "Kinder", image: "/kinder.png" },
       { text: "quiero al baño", image: "/pipi.jpg" },
-      { text: "Tren", image: "/tren.jpg" },
+      { text: "quiero ir con el Tren", image: "/tren.jpg" },
     ],
     selectedImage: localStorage.getItem("selectedImage") || [],
     selectedImages: JSON.parse(localStorage.getItem("selectedImages")) || [],
@@ -147,10 +147,13 @@ const store = createStore({
       localStorage.setItem("savedImages", JSON.stringify(updatedImages));
 
     },
-     loadSavedImages({ commit }) {
-      commit("LOAD_SAVED_IMAGES");
-      
+    loadSavedImages({ commit }) {
+      const saved = JSON.parse(localStorage.getItem('savedImages'));
+      if (saved && Array.isArray(saved)) {
+        commit('SET_IMAGES', saved);
+      }
     },
+     
      loadActulizarComunicador({ commit }) {
         const savedData = localStorage.getItem("ActualizarcomunicadorData");
         if (savedData) {

@@ -14,7 +14,7 @@
         type="text"
         v-model="searchQuery"
         @keyup.enter="fetchImages"
-        placeholder="Buscar imagen"
+        placeholder="Buscar imagen en Internet"
       />
     
 
@@ -184,6 +184,7 @@ mounted() {
     this.set_SELECTED_IMAGE(imageData);
 };
 {
+   this.$store.dispatch('loadSavedImages'); 
     this.cargarVoz(); 
   }
 
@@ -217,7 +218,7 @@ h1 {
   background: linear-gradient(to bottom, #3903b6, #85e6d1);
   color: white;
   border-radius: 5px;
-  width: 440px;
+  width: 435px;
   text-align: center;
   align-items: center;
   border-radius: 12px;
@@ -270,11 +271,12 @@ h1 {
   color: rgb(12, 8, 59);
   margin-right: 5px;
   margin-left: -25px;
+  margin-top: 8px;
 }
 .search-button {
   background-color: #323ddb;
   border: 1px solid #350d68;
-  height: 20px;
+  height: 59px;
   width: 10px;
   cursor: pointer;
   padding: 0 5px;
@@ -282,6 +284,7 @@ h1 {
   display: flex; 
   align-items: center;
   justify-content: center;
+  margin-top: 3px;
   margin-left:-9px; }
   
 .search-button i {

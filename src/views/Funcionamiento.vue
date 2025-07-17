@@ -48,12 +48,12 @@
 <style scoped>
 .about {
   font-family: 'Poppins', sans-serif;
-  margin: 600px;
-  max-width: 90%; 
+  margin: 20px auto;
+  max-width: 600px; 
   width: 90%;
   padding: 20px;
-
-}
+  box-sizing: border-box;
+  text-align: left; }
 
 h1 {
   font-size: xx-large;
@@ -62,7 +62,7 @@ h1 {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   display: block; 
-  text-align: center; 
+  text-align: left; 
   margin: 0 0 20px 0;
 }
 
@@ -75,7 +75,7 @@ p {
   font-weight: 800;
   line-height: 1.6;
   text-align: left; 
-    white-space: normal !important;        
+  white-space: normal !important;        
   word-break: break-word;                 
   overflow-wrap: break-word;              
   hyphens: auto;                         
@@ -95,6 +95,7 @@ h2, h3, h4, h5 {
 h2, h3, h4, h5 {
   font-size: medium;
   font-weight: bold;
+  text-align: left; 
 }
 
 .step {
@@ -105,16 +106,18 @@ h2, h3, h4, h5 {
   border: none;
   height: 2px;
   background-color: #ccc;
-  margin: 30px 0;
+  margin: 5px 0;
 }
 
 @media (max-width: 600px) {
   .about {
     padding: 15px;
+    text-align: left;
   }
 
   h1 {
     font-size: x-large;
+    text-align: left;
   }
 
   p {
@@ -122,6 +125,7 @@ h2, h3, h4, h5 {
     white-space: normal !important;
     word-wrap: break-word;
     overflow-wrap: break-word;
+     text-align: left;
 
   }
 }

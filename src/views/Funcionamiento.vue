@@ -49,7 +49,8 @@
 .about {
   font-family: 'Poppins', sans-serif;
   margin: 20px auto;
-  max-width: 800px; 
+  max-width: 90%; 
+  width: 100%;
   padding: 20px;
 }
 
@@ -59,8 +60,8 @@ h1 {
   background: linear-gradient(45deg, #0535d3, #43ddd5);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  display: block; /* No inline-block */
-  text-align: center; /* Centra el título */
+  display: block; 
+  text-align: center; 
   margin: 0 0 20px 0;
 }
 
@@ -68,11 +69,16 @@ p {
   background: linear-gradient(45deg, #1916d4, #43ddd5);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  display: block; /* Texto de párrafo en bloque */
+  display: block;
   font-size: medium;
   font-weight: 800;
   line-height: 1.6;
-  text-align: left; /* Mejor legibilidad */
+  text-align: left; 
+    white-space: normal !important;        
+  word-break: break-word;                 
+  overflow-wrap: break-word;              
+  hyphens: auto;                         
+  letter-spacing: normal !important;
 }
 
 h2, h3, h4, h5 {

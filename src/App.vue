@@ -191,12 +191,12 @@ header {
   display: flex;
   align-items: center; 
   justify-content: flex-start;
-  width: 100vw;        
+  width: 440px;        
   height: 80px;
   background: linear-gradient(to bottom, #4153b4, #87d3ce);
   padding: 0 10px;     
   box-sizing: border-box; 
-  gap: 20px;
+  gap: 10px;
 }
 
 

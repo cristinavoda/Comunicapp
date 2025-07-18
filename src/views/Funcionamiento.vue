@@ -48,9 +48,11 @@
 <style scoped>
 .about {
   font-family: 'Poppins', sans-serif;
-  margin: 20px auto;
-  max-width: 600px; 
-  width: 90%;
+   position: relative;
+
+  margin-left: -120px;
+   
+  width:fit-content;
   padding: 20px;
   box-sizing: border-box;
   text-align: left; }
@@ -70,7 +72,9 @@ p {
   background: linear-gradient(45deg, #1916d4, #43ddd5);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  display: block;
+  display: block; position: relative;
+  z-index: 1;
+
   font-size: medium;
   font-weight: 800;
   line-height: 1.6;
@@ -80,6 +84,11 @@ p {
   overflow-wrap: break-word;              
   hyphens: auto;                         
   letter-spacing: normal !important;
+   margin-left: 1px;   
+  margin-top: 50px;
+
+  
+
 }
 
 h2, h3, h4, h5 {
@@ -115,7 +124,7 @@ h2, h3, h4, h5 {
     text-align: left;
   }
 
-  h1 {
+  h1,h2,h3,h4,h5 {
     font-size: x-large;
     text-align: left;
   }

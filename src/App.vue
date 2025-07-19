@@ -177,6 +177,14 @@ onMounted(() => {
 
 
 <style scoped>
+html, body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+*, *::before, *::after {
+  box-sizing: inherit;
+}
 
 body {font-family: Arial, sans-serif;
   display: flex;
@@ -197,8 +205,8 @@ header {
   padding: 0 10px;     
   box-sizing: border-box; 
   gap: 8px;
-  margin: 0;
-  width: 100vw;
+  margin: 0 auto;
+  width: 130%;
   margin-left: -10px;
 
   
@@ -211,7 +219,7 @@ header button,
   font-family: 'Poppins', sans-serif;
   font-size: 18px;
   font-weight: 600;
-  height: 20px;
+  height: 40px;
   margin-top: 16px;
   background-color: #f6f9fa;
   color: #07BEB8;
@@ -355,6 +363,9 @@ main {
   .body {
     font-size: 20px;;
   }
+  .header {
+    background-size: cover;
+    background-position: center;}
 }
 
 @media (min-width: 769px) {

@@ -93,7 +93,7 @@ background-color: #e8ecdc;
   background-color: rgb(29, 105, 143);
   background-position: center;
   border-radius: 12px;
-  box-shadow: 4px 4px 4px rgba(203, 162, 250, 0.884);
+  box-shadow: 4px 4px 4px rgba(72, 178, 228, 0.884);
   cursor: pointer;
   overflow: hidden;
   margin: 12px;
@@ -138,13 +138,15 @@ background-color: #e8ecdc;
   background-color: rgb(167, 11, 11);
   color: white;
   margin-left: 30px;
+  box-shadow: 4px 4px 4px rgba(233, 30, 40, 0.884);
+  
 }
 
 .si {
   background-color: rgb(3, 80, 42);
   color: white;
   margin-left: 30px;
-  
+   box-shadow: 4px 4px 4px rgba(72, 178, 228, 0.884);
   
 }.container {
   padding: 60px;

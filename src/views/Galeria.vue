@@ -13,11 +13,10 @@
   v-model="searchQuery"
   @keyup.enter="fetchImages"
   placeholder="Buscar imagen"
+  
 />
 
-      <button @click="fetchImages" class="search-button">
-        <i class="fas fa-search"></i>
-      </button>
+      
     </div>
 
     <div v-if="loading">Cargando imágenes...</div>
@@ -207,7 +206,7 @@ handleFileUpload(event) {
   padding: 15px;
   border-radius: 8px;
   outline: none;
-  width: 80%;
+  width: 100%;
   margin-left: 1px;
 }
 
@@ -295,10 +294,13 @@ handleFileUpload(event) {
   border-radius: 15px;
   row-gap: 10px;
 }
-
 .image-card {
-  position: relative;  
-  border-radius: 10px;
+  position: relative;
+  width: 150px;          
+  height: 150px;         
+  display: flex;         
+  align-items: center;    
+  justify-content: center; 
   overflow: hidden;
   background: #faf8f8;
   box-shadow: 0 2px 10px rgba(91, 122, 136, 0.1);
@@ -306,9 +308,12 @@ handleFileUpload(event) {
 }
 
 .image-card img {
-  width: 100%;
+  width: 100%;           
+  height: 100%;          
+  object-fit: cover;    
   display: block;
 }
+
 .save-button {
   position: absolute;
   bottom: 10px;
@@ -407,4 +412,3 @@ handleFileUpload(event) {
       
       
   </style>
-  

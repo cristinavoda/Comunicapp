@@ -19,6 +19,7 @@
   <router-link to="/mi-comunicador" class="btn-mi-comunicador">
     MiComunicador
   </router-link>
+  
 </header>
 
   
@@ -191,12 +192,15 @@ header {
   display: flex;
   align-items:flex-start; 
   justify-content: flex-start;
-  width:100%;        
   height: 80px;
   background: linear-gradient(to bottom, #4153b4, #87d3ce);
   padding: 0 10px;     
   box-sizing: border-box; 
   gap: 8px;
+  margin: 0;
+  width: 100vw;
+  margin-left: -10px;
+
   
 }
 
@@ -215,7 +219,7 @@ header button,
   border: none;
   cursor: pointer;
   text-shadow: 1px 1px 2px rgba(30, 170, 123, 0.3);
-  box-shadow:4px 4px 4px rgba(66, 41, 207, 0.2);
+  box-shadow:4px 4px 4px rgba(11, 125, 145, 0.2);
   transition: background-color 0.3s ease, color 0.3s ease;
   text-decoration: none;
   border-radius: 8px;
@@ -233,7 +237,7 @@ header button:hover,
 
 .menu-toggle {
   font-size: 20px; 
-  width: 100px;
+  width: 80px;
   height: 40px;
   margin-top: 16px;
   margin-left: -1px;

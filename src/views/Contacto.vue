@@ -48,10 +48,10 @@ const handleSubmit = () => {
   min-width:200px;
   margin-left:-200px; 
   margin-right: 50 px;
-  margin-top: -70px;
+  margin-top: 30px;
   background: #ffffff;
   border-radius: 10px;
-  box-shadow: 0px 4px 6px rgba(15, 138, 117, 0.89);
+  box-shadow: 10px 11px 10px 10px rgba(15, 138, 117, 0.89);
   padding: 40px;
   text-align: center;
 }
@@ -64,7 +64,9 @@ h2 {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   display: inline-block;
-  margin-left: -50px;}
+  margin-left: -50px;
+margin-top: 10px;}
+  
 
 
 
@@ -92,9 +94,10 @@ textarea {
   margin-bottom: 15px;
   margin-left: -20px;
   font-size: 16px;
-  background-color: rgb(252, 255, 255);
+  background-color: rgb(240, 248, 248);
   border: 2px solid #eef1f1;
   border-radius: 5px;
+  
 }
 
 textarea {

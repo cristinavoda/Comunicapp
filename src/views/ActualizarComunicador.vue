@@ -234,16 +234,14 @@ mounted() {
 
 <style scoped>
 h1 {
-  background: linear-gradient(45deg, #4426f0, #61d495);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  font-size: x-large;
-  text-align:start;
-  margin-top:-30px ;
-  margin-left:0%;
-  margin-right: auto;
-  display: block; 
-  padding: 10px; 
+  font-size: 2rem;
+    font-weight: bold;
+    background: linear-gradient(45deg, #2a045c, #43ddd5);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+    margin-left: -150px;
+    margin-top: -20px; 
 }
 
 .upload-section {
@@ -266,7 +264,7 @@ h1 {
   gap: 10px;
   margin-top: 20px;
   width: 220px;
-  margin-left: -18px;
+  margin-left: -26px;
 }
 
 .custom-file-upload {
@@ -276,6 +274,8 @@ h1 {
   color: white;
   border-radius: 8px;
   cursor: pointer;
+   width: 455px;
+   margin-left: -20px;
 }
 
 
@@ -285,7 +285,7 @@ h1 {
   background-color: #3bb7dd;
   display: flex; 
   width: 470px;
-  margin-left: -20px;
+  margin-left: -22px;
   border: none;
   border-radius: 5px;
   padding: 5px;
@@ -307,6 +307,7 @@ h1 {
   margin-right: 5px;
   margin-left: -25px;
   margin-top: 8px;
+  height:8px
 }
 .search-button {
   background-color: #323ddb;
@@ -338,13 +339,13 @@ h1 {
 }
 
 .input-button{
-  height: 40px;
+  height: 30px;
   width:200px;
   border: 2px solid #0d7575;
   border-radius: 5px;
   background-color: #c2cbe4;
   outline: none;
-  color: rgb(12, 8, 59);
+  color: rgb(8, 61, 82);
   flex-grow: 1; 
   margin-right: 10px; 
   margin-left:-9px;

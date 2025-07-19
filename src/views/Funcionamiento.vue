@@ -30,9 +30,16 @@
         <p>Pulsa el botón "Guardar" para agregar la imagen seleccionada.</p>
         <p>Escribe el texto que corresponde a la imagen según las necesidades del usuario.</p>
       
-    
+    <h4>Opción 3: Subir imagen desde la Galería</h4>
+
+<p>En esta opción, puedes seleccionar una imagen que ya hayas guardado en tu Galería personal.</p>
+<p>Haz clic en la imagen deseada dentro de la Galería.</p>
+<p>La imagen seleccionada se cargará automáticamente en la sección de actualización del Comunicador.</p>
+<p>Luego podrás añadir o modificar el texto que deseas asociar a esta imagen para facilitar la comunicación.</p>
+
 
     <hr class="step-divider">
+
     <h5>COMUNICADOR - es un DEMO, con imágenes y voz al hacer click sobre las palabras.</h5>
 <hr class="step-divider">
 

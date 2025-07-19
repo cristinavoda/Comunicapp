@@ -181,7 +181,7 @@ body {font-family: Arial, sans-serif;
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-  margin-left: -20px;
+  margin-left: -25px;
   height: 100vh;
   background-color: #e5f0e9;
   overflow-x: hidden;
@@ -189,14 +189,15 @@ body {font-family: Arial, sans-serif;
 }
 header {
   display: flex;
-  align-items: center; 
+  align-items:flex-start; 
   justify-content: flex-start;
-  width: 440px;        
+  width:100%;        
   height: 80px;
   background: linear-gradient(to bottom, #4153b4, #87d3ce);
   padding: 0 10px;     
   box-sizing: border-box; 
-  gap: 10px;
+  gap: 8px;
+  
 }
 
 
@@ -207,14 +208,14 @@ header button,
   font-size: 18px;
   font-weight: 600;
   height: 20px;
-  margin-top: 20px;
+  margin-top: 16px;
   background-color: #f6f9fa;
   color: #07BEB8;
   padding: 10px 20px;         
   border: none;
   cursor: pointer;
   text-shadow: 1px 1px 2px rgba(30, 170, 123, 0.3);
-  box-shadow: 0 2px 4px rgba(60, 206, 186, 0.2);
+  box-shadow:4px 4px 4px rgba(66, 41, 207, 0.2);
   transition: background-color 0.3s ease, color 0.3s ease;
   text-decoration: none;
   border-radius: 8px;
@@ -234,7 +235,8 @@ header button:hover,
   font-size: 20px; 
   width: 100px;
   height: 40px;
-  margin-top: 20px;
+  margin-top: 16px;
+  margin-left: -1px;
 }
 
 

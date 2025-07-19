@@ -84,7 +84,7 @@ p {
   overflow-wrap: break-word;              
   hyphens: auto;                         
   letter-spacing: normal !important;
-   margin-left: 1px;   
+   margin-left: -1px;   
   margin-top: 50px;
 
   

@@ -7,13 +7,14 @@
         Subir imagen personal
         <input type="file" @change="handleFileUpload" accept="image/*" hidden />
       </label>
+<input
+  class="input-search"
+  type="text"
+  v-model="searchQuery"
+  @keyup.enter="fetchImages"
+  placeholder="Buscar imagen"
+/>
 
-      <input
-        type="text"
-        v-model="searchQuery"
-        @keyup.enter="fetchImages"
-        placeholder="Buscar imagen"
-      />
       <button @click="fetchImages" class="search-button">
         <i class="fas fa-search"></i>
       </button>
@@ -32,7 +33,9 @@
     <div class="images-grid">
       <div v-for="image in images" :key="image.id" class="image-card">
         <img :src="image.previewURL" :alt="image.tags" />
-        <button @click="addToGallery(image)">Guardar</button>
+        <button class="save-button" @click="addToGallery(image)">
+      Guardar
+    </button>
       </div>
     </div>
 
@@ -40,7 +43,7 @@
 
     <div class="saved-images">
       <div v-for="image in savedImages" :key="image.id" class="image-card">
-        <img :src="image.previewURL" :alt="image.tags" />
+        <img :src="image.previewURL" :alt="image.tags" @click="selectAndGo(image)"/>
         <button class="delete-button" @click="removeFromSaved(image.id)">
           Eliminar
         </button>
@@ -69,23 +72,33 @@ export default {
   },
 
   methods: {
-    ...mapActions(["saveImage", "removeSavedImage", "loadSavedImages"]),
+    ...mapActions(["saveImage", "removeSavedImage", "loadSavedImages","selectImage"]),
 
-  handleFileUpload(event) {
+selectAndGo(image) {
+  this.$store.commit('set_SELECTED_IMAGE', {
+    previewURL: image.previewURL || image.image,
+    text: image.text || ""
+  });
+  this.$router.push({ name: "ActualizarComunicador" });
+},
+
+handleFileUpload(event) {
   const file = event.target.files[0];
   if (file) {
     const reader = new FileReader();
     reader.onload = (e) => {
       const image = {
-        id: Date.now(), 
-        previewURL: e.target.result, 
+        id: Date.now(),
+        previewURL: e.target.result,
         tags: "Imagen personal",
       };
-      this.saveImage(image); 
+      this.$store.dispatch("addSavedImage", image);
+      
     };
     reader.readAsDataURL(file);
   }
 },
+
 
     async fetchImages() {
       if (!this.searchQuery) return;
@@ -108,9 +121,10 @@ export default {
       }
     },
 
-    addToGallery(image) {
-      this.saveImage(image);
-    },
+ addToGallery(image) {
+  this.$store.dispatch("addSavedImage", image);
+},
+
 
     removeFromSaved(id) {
       this.removeSavedImage(id);
@@ -151,7 +165,7 @@ export default {
     margin-left: -160px;
     padding: 30px;
     background: linear-gradient(to bottom, #3903b6, #85e6d1);
-    color: white;
+    color: rgb(248, 250, 250);
     border-radius: 5px;
     width: 300px;
     text-align: center;
@@ -159,118 +173,70 @@ export default {
     border-radius: 12px;
     box-shadow: 2px 4px 10px rgba(143, 189, 151, 0.884);
   }
-  
-  .images-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
-    margin-top: 20px;
-    width: 110px;
-    margin-left: -18px;
-  }
-  
-  
-  
+ 
   
   .search-container {
-    background: linear-gradient(to bottom, #3903b6, #85e6d1);
-    display: flex; 
-    width: 360px;
-    margin-left: -165px;
-    border: none;
-    border-radius: 15px;
-    padding: 25px;
-    gap: 35px;
-    overflow: hidden; 
-   
-   }
-   .custom-file-upload {
-    display: inline-block;
-    width: 150px;
-    height:50px;
-    padding: 10px;
-    background-color: #268ac4;
-    color: white;
-    border-radius: 8px;
-    cursor: pointer;
-  }
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 20px 0;
+  max-width: 400px;
+  margin-left: -160px; 
+}
+
+.custom-file-upload {
+  background: linear-gradient(to bottom, #3903b6, #85e6d1);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 15px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  width: 100%;
+}
+
+.custom-file-upload:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+.input-search {
+  background: linear-gradient(to bottom, #3903b6, #85e6d1);
+  border: none;
+  color: #fff;
+  padding: 15px;
+  border-radius: 8px;
+  outline: none;
+  width: 80%;
+  margin-left: 1px;
+}
+
+.input-search::placeholder {
+  color: #fff;
+}
+
+.search-button {
+  background: linear-gradient(to bottom, #3903b6, #85e6d1);
+  border: none;
+  border-radius: 15px;
+  padding: 15px;
+  color: #148e9e;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: transform 0.2s, box-shadow 0.2s;
+  margin-top: 8px;
+  height: 30px;
   
-   
+}
+
+.search-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
   
-  .search-input{
-    flex: 1;
-    height: 70px;
-    border: 2px solid #240bb4;
-    border-radius: 5px;
-    background-color: #c2cbe4;
-    padding: 5px;
-    outline: none;
-    color: rgb(12, 8, 59);
-    margin-right: 5px;
-    margin-left:auto;
-  }
-  .search-button {
-    background-color: #323ddb;
-    border: 1px solid #10b38f;
-    height: 20px;
-    width: 20px;
-    cursor: pointer;
-    padding: 0 5px;
-    border-radius: 5px;
-    display: flex; 
-    align-items: center;
-    justify-content: center; }
-  
-  .search-button i {
-    font-size: 18px; 
-    color: #0f2149;
-  }
-  
-  .preview-section {
-    display: inline;
-  }
-  
-  .preview-section img {
-    max-width: 300px;
-    border-radius: 5px;
-  }
-  
-  .input-button{
-    height: 40px;
-    width:100px;
-    border: 2px solid #0d7575;
-    border-radius: 5px;
-    background-color: #c2cbe4;
-    outline: none;
-    color: rgb(12, 8, 59);
-    flex-grow: 1; 
-    margin-right: 10px; 
-  }
-  
-  
-  
-  .images-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 150px);
-    margin-top: 20px;
-    margin-left: -170px;
-    gap: 60px;
-    row-gap: 30px;
-  }
-    
-  
-  .save-button {
-    display: none;
-    position:absolute;
-    margin: 20px auto;
-    padding: 10px 20px;
-    background-color: #571523;
-    color: white;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  .categories {
-  margin-top: -100px;
+   .categories {
+  margin-top: -40px;
   margin-left: -170px; 
   max-width: 400px; 
   padding: 10px;
@@ -284,8 +250,8 @@ export default {
   -webkit-background-clip: text;  
   -webkit-text-fill-color: transparent; 
   display: inline-block;
-  margin-left: -150px;
-  margin-top: 15px;
+  margin-left: 20px;
+  margin-top: 35px;
 }
 
 
@@ -312,6 +278,58 @@ export default {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
+  .preview-section {
+    display: inline;
+  }
+  
+  .preview-section img {
+    max-width: 300px;
+    border-radius: 5px;
+  }
+  
+.images-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 150px); 
+  gap: 50px;
+  margin-left: -150px;
+  border-radius: 15px;
+  row-gap: 10px;
+}
+
+.image-card {
+  position: relative;  
+  border-radius: 10px;
+  overflow: hidden;
+  background: #faf8f8;
+  box-shadow: 0 2px 10px rgba(91, 122, 136, 0.1);
+  border-radius: 15px;
+}
+
+.image-card img {
+  width: 100%;
+  display: block;
+}
+.save-button {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(to bottom, #3903b6, #85e6d1);
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.image-card:hover .save-button {
+  opacity: 1;
+}
+
+ 
+
  h2 {
   font-size: 2rem;
   font-weight: bold;
@@ -332,22 +350,26 @@ export default {
     row-gap: 10px;
   }
   .image-card {
+    position: relative; 
     background: white;
     border-radius: 12px;
-    box-shadow: 2px 4px 10px rgba(143, 189, 151, 0.884); 
-    padding: 16px;
+    box-shadow: 8px 4px 10px rgba(129, 195, 221, 0.884); 
     transition: all 0.3s ease-in-out;
     width: 170px;
     height: 200px;
-    
     border: 1px solid #cce6ec;
     padding: 10px;
-    border-radius: 5px;
     text-align: center;
-  
-    position: relative;
   }
   .image-card:hover .select-btn {opacity: 1}
+  
+  .image-card img {
+    width: 150px;
+    height:170px;
+    border: 1px solid #eef0f1;
+    border-radius: 5px;
+    margin-top: 15px;
+  }
   
   
   .delete-button {
@@ -367,29 +389,7 @@ export default {
   }
   
   
-  .image-card img {
-    width: 150px;
-    height:170px;
-    
-    border: 1px solid #f0eef5;
-    border-radius: 5px;
-    margin-top: 15px;
-  }
-  .select-btn {
-    
-    position: absolute;
-    bottom: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: rgba(0, 128, 128, 0.8); 
-    color: white;
-    border: none;
-    padding: 8px 12px;
-    border-radius: 6px;
-    cursor: pointer;
-    opacity: 0;
-    transition: opacity 0.3s ease-in-out;
-    }
+  
   
         
       .btn:hover::after {

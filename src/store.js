@@ -11,7 +11,8 @@ const store = createStore({
       { text: "quiero al baño", image: "/pipi.jpg" },
       { text: "quiero ir con el Tren", image: "/tren.jpg" },
     ],
-    selectedImage: localStorage.getItem("selectedImage") || [],
+    selectedImage: JSON.parse(localStorage.getItem("selectedImage")) || null,
+
     selectedImages: JSON.parse(localStorage.getItem("selectedImages")) || [],
     selectedImageText: localStorage.getItem("selectedImageText") || "",
     actualizarComunicador: [],
@@ -35,6 +36,13 @@ const store = createStore({
         );
       }
     },
+    ADD_SAVED_IMAGE(state, image) {
+      if (!state.savedImages.find((img) => img.id === image.id)) {
+        state.savedImages.push(image);
+        localStorage.setItem("savedImages", JSON.stringify(state.savedImages));
+      }
+    },
+  
     REMOVE_SELECTED_IMAGE(state, imageId) {
       state.selectedImages = state.selectedImages.filter(
         (img) => img.id !== imageId
@@ -120,6 +128,9 @@ const store = createStore({
   actions: {
     addSelectedImageText({ commit }, image) {
       commit("ADD_SELECTED_IMAGE", image);
+    },
+     selectImage({ commit }, image) {
+      commit("SET_SELECTED_IMAGE", image);
     },
     removeSelectedImageText({ commit }, imageId) {
       commit("REMOVE_SELECTED_IMAGE", imageId);

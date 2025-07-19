@@ -9,6 +9,8 @@
         <input type="file" @change="handleFileUpload" accept="image/*" hidden />
       </label>
 
+
+
      <div class="search-container">
       <input
         type="text"
@@ -16,12 +18,12 @@
         @keyup.enter="fetchImages"
         placeholder="Buscar imagen en Internet"
       />
-    
-
       <button @click="fetchImages" class="search-button">
         <i class="fas fa-search"></i> 
       </button>
     </div>
+
+
 
       <div v-if="loading">Cargando imágenes...</div>
       <div v-if="error">{{ error }}</div>
@@ -33,10 +35,14 @@
           <button @click="selectPixabayImage(image)">Guardar</button>
         </div>
       </div>
+<div class="preview-section" v-if="selectedImage && selectedImage.previewURL">
+  <img :src="selectedImage.previewURL" alt="Imagen seleccionada" />
+</div>
 
       <div v-if="uploadedImage || selectedPixabayImage || $store.state.selectedImage " class="preview-section">
+      <img :src="uploadedImage || selectedPixabayImage || $store.state.selectedImage?.previewURL" alt="Imagen seleccionada" />
+ 
        
-        <img :src="uploadedImage || selectedPixabayImage || $store.state.selectedImage?.image" :alt="'Imagen seleccionada'" />
         <div v-if="$store.state.selectedImage">
      
       <p v-if="$store.state.selectedImage">{{ $store.state.selectedImage.text }}</p>
@@ -74,6 +80,7 @@ export default {
       searchQuery: "",
       uploadedImage: null,
       hasChanges: false,
+      selectedImage: null,
       selectedImageText: "",
       selectedPixabayImage: null, 
       images: [],
@@ -84,6 +91,9 @@ export default {
   computed: {
     ...mapGetters(["selectedImage","buttons"]),
     ...mapState(["selectedImage","buttons"]),
+    ...mapState(["savedImages"]),
+     ...mapState(["selectedImage"]),
+    
     selectedImage() {
     return this.$store.state.selectedImageForUpdate;
   },
@@ -91,8 +101,14 @@ export default {
   },
 
   methods: {
-    ...mapActions(["addSavedImage", "removeSavedImage","addSelectedImage","addToActualizarComunicador", "addToGaleria","cargarVoz"]),
+    ...mapActions(["addSavedImage", "removeSavedImage","replaceImage","addSelectedImage","addToActualizarComunicador", "addToGaleria","cargarVoz"]),
+   
+    selectImageFromGaleria(image) {
     
+    this.$store.commit('set_SELECTED_IMAGE', image); 
+  },
+  
+
     hablar(texto) {
       let utterance = new SpeechSynthesisUtterance(texto);
       utterance.voice = speechSynthesis.getVoices().find(v => v.name === this.vozSeleccionada);
@@ -153,17 +169,30 @@ async fetchImages() {
   this.$store.commit("set_SELECTED_IMAGE_TEXT", image);
   this.$store.commit("UPDATE_SELECTED_IMAGE_TEXT", image.tags);
 },
+replaceImage(index) {
+  // Nueva lógica: considera subida, Pixabay o Galería
+  const newImage = 
+    this.uploadedImage || 
+    this.selectedPixabayImage || 
+    this.$store.state.selectedImage?.previewURL;
 
-    replaceImage(index) {
-  if (this.uploadedImage || this.selectedPixabayImage) {
-    const newImage = this.uploadedImage || this.selectedPixabayImage;
-    this.$store.dispatch("replaceImage", { index, image: newImage, text: this.selectedImageText });
+  const newText = 
+    this.selectedImageText || 
+    this.$store.state.selectedImage?.text || "";
+
+  if (newImage) {
+    this.$store.dispatch("replaceImage", { index, image: newImage, text: newText });
+
+    // Limpia solo lo que toque
     this.uploadedImage = null;
     this.selectedPixabayImage = null;
     this.selectedImageText = "";
     this.hasChanges = true;
+  } else {
+    console.warn("No hay imagen seleccionada para reemplazar.");
   }
 },
+
   guardarImagenDesdePixabay(imagen) {
   this.$store.dispatch("saveImage", imagen);
 },
@@ -186,6 +215,12 @@ mounted() {
 {
    this.$store.dispatch('loadSavedImages'); 
     this.cargarVoz(); 
+  }
+   if (!this.selectedImage || !this.selectedImage.previewURL) {
+    const stored = JSON.parse(localStorage.getItem("selectedImage"));
+    if (stored) {
+      this.$store.commit("set_SELECTED_IMAGE", stored);
+    }
   }
 
   },

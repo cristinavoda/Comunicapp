@@ -1,14 +1,20 @@
 <template>
   <div class="comunicador">
-    <!-- Vista imagen grande -->
+    
     <div v-if="fullscreenItem" class="fullscreen-card">
       <img :src="fullscreenItem.image" alt="Imagen seleccionada" />
       <p>{{ fullscreenItem.text }}</p>
+       <div class="fullscreen-card-buttons">
       <button class="speak-button" @click="speakText(fullscreenItem.text)">Hablar</button>
       <button class="back-button" @click="fullscreenItem = null">Volver</button>
     </div>
+     <div class="fullscreen-si-no">
+    <button id="no-button" class="button no" @click="speakText('NO')">NO</button>
+    <button id="si-button" class="button si" @click="speakText('SÍ')">SÍ</button>
+  </div>
+    </div>
 
-    <!-- Grid normal -->
+    
     <div v-else class="grid">
       <button
         v-for="(item, index) in buttons"
@@ -129,6 +135,30 @@ background-color: #e8ecdc;
   cursor: pointer;
   margin-left: 0px;
 }
+.botones-container {
+    display:flex;
+    justify-content:flex-start; 
+    align-items:flex-start; 
+    gap: 10px;
+    margin-left: 10px;
+}
+
+  
+.no {
+  
+  background-color: rgb(167, 11, 11);
+  color: white;
+  box-shadow: 4px 4px 4px rgba(233, 30, 40, 0.884);
+  margin-top: 40px;
+}
+
+.si {
+  background-color: rgb(3, 80, 42);
+  color: white;
+  box-shadow: 4px 4px 4px rgba(72, 178, 228, 0.884);
+  margin-top: 40px;
+}
+
 .container {
   padding: 60px;
   font-size: 16px;
@@ -141,12 +171,12 @@ background-color: #e8ecdc;
 }
 
 .fullscreen-card img {
-  max-width: 90%;
+  max-width: 390px;
   min-width: 70%;
   height: auto;
   border-radius: 12px;
   margin-top: -20px;
-  margin-left: -370px;
+  margin-left: 0px;
   box-shadow: 6px 6px 10px 6px rgba(66, 210, 230, 0.884);
   margin: 20px px;
 }
@@ -161,7 +191,7 @@ background-color: #e8ecdc;
   display: flex;
   justify-content: center;
   gap: 20px;
-  margin-left:  -530px;
+  margin-left:  -30px;
 }
 
 .speak-button,
@@ -179,6 +209,13 @@ background-color: #e8ecdc;
   background: #268ac4;
 }
 
+.fullscreen-si-no {
+  display: flex;
+  justify-content: flex-start;
+  gap: 10px;
+  margin-top: 30px;
+  margin-left: -30px;
+}
 
 
 @media (max-width: 768px) {

@@ -1,6 +1,6 @@
 <template>
   <div class="mi-comunicador">
-    <!-- ✅ VISTA AMPLIADA -->
+    
     <div v-if="selectedButton" class="fullscreen-card">
       <img :src="selectedButton.image" :alt="selectedButton.text" />
       <p>{{ selectedButton.text }}</p>
@@ -203,12 +203,12 @@ export default {
 }
 
 .fullscreen-card img {
-  max-width: 90%;
+  max-width: 390px;
   min-width: 70%;
   height: auto;
   border-radius: 12px;
   margin-top: -20px;
-  margin-left: -370px;
+  margin-left: 0px;
   box-shadow: 6px 6px 10px 6px rgba(66, 210, 230, 0.884);
   margin: 20px px;
 }
@@ -223,7 +223,7 @@ export default {
   display: flex;
   justify-content: center;
   gap: 20px;
-  margin-left:  -530px;
+  margin-left:  -30px;
 }
 
 .speak-button,

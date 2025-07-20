@@ -1,57 +1,52 @@
 <template>
+  <div class="comunicador">
+    <!-- Vista imagen grande -->
+    <div v-if="fullscreenItem" class="fullscreen-card">
+      <img :src="fullscreenItem.image" alt="Imagen seleccionada" />
+      <p>{{ fullscreenItem.text }}</p>
+      <button class="speak-button" @click="speakText(fullscreenItem.text)">Hablar</button>
+      <button class="back-button" @click="fullscreenItem = null">Volver</button>
+    </div>
 
-<div class="grid" >
-  
-   <button
-      v-for="(item, index) in buttons"
-      :key="index"
-      class="btn"
-      :data-text="item.text"
-      :style="{ backgroundImage: `url(${item.image})` }"
-      @click="speakText(item.text)"
-    ></button>
+    <!-- Grid normal -->
+    <div v-else class="grid">
+      <button
+        v-for="(item, index) in buttons"
+        :key="index"
+        class="btn"
+        :data-text="item.text"
+        :style="{ backgroundImage: `url(${item.image})` }"
+        @click="showFullscreen(item)"
+      ></button>
 
-    
-    <button id="no-button" class="button no" @click="speakText('NO')">NO</button>
-    <button id="si-button" class="button si" @click="speakText('SÍ')">SÍ</button>
+      <div class="botones-container">
+        <button id="no-button" class="button no" @click="speakText('NO')">NO</button>
+        <button id="si-button" class="button si" @click="speakText('SÍ')">SÍ</button>
+      </div>
+    </div>
   </div>
-  
-
-
-
 </template>
 
 <script>
-import { computed } from "vue";
-import { useStore } from "vuex";
-
-const store = useStore();
-const vozSeleccionada = computed(() => store.state.vozSeleccionada);
-
-const hablar = (texto) => {
-  const synth = window.speechSynthesis;
-  const utterance = new SpeechSynthesisUtterance(texto);
-  const voz = store.getters.getVocesDisponibles.find(v => v.name === vozSeleccionada.value);
-
-  if (voz) utterance.voice = voz;
-
-  synth.speak(utterance);
-};
-
 export default {
   data() {
     return {
+      fullscreenItem: null,
       buttons: [
         { text: "quiero comer", image: "/pasta.jpg" },
         { text: "Agua ,tengo sed", image: "/agua.jpg" },
         { text: "vamos  a pasear", image: "/pasear.jpg" },
-        { text: "estoy enfermo  ", image: "/enfermo.jpg" },
+        { text: "estoy enfermo", image: "/enfermo.jpg" },
         { text: "quiero al baño", image: "/baño.jpg" },
         { text: "quiero ir con el tren", image: "/tren.webp" },
       ],
     };
   },
   methods: {
+    showFullscreen(item) {
+      this.fullscreenItem = item;
+      this.speakText(item.text);
+    },
     speakText(text) {
       const utterance = new SpeechSynthesisUtterance(text);
       utterance.lang = "es-ES";
@@ -60,6 +55,7 @@ export default {
   },
 };
 </script>
+
 
 <style scoped>
 body {
@@ -75,10 +71,11 @@ background-color: #e8ecdc;
 .grid {
   display: grid ;
   margin-left: -150px ;
+  grid-template-columns: repeat(2, 150px);
   margin-top: -50px ;
   padding: -5px;
-  row-gap: 15px; 
-  column-gap: 10px; 
+  row-gap: 10px; 
+  column-gap: 80px; 
   margin-left: -160px;
  
   ;
@@ -132,26 +129,57 @@ background-color: #e8ecdc;
   cursor: pointer;
   margin-left: 0px;
 }
-
-
-.no {
-  background-color: rgb(167, 11, 11);
-  color: white;
-  margin-left: 30px;
-  box-shadow: 4px 4px 4px rgba(233, 30, 40, 0.884);
-  
-}
-
-.si {
-  background-color: rgb(3, 80, 42);
-  color: white;
-  margin-left: 30px;
-   box-shadow: 4px 4px 4px rgba(72, 178, 228, 0.884);
-  
-}.container {
+.container {
   padding: 60px;
   font-size: 16px;
 }
+  .fullscreen-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.fullscreen-card img {
+  max-width: 90%;
+  min-width: 70%;
+  height: auto;
+  border-radius: 12px;
+  margin-top: -20px;
+  margin-left: -370px;
+  box-shadow: 6px 6px 10px 6px rgba(66, 210, 230, 0.884);
+  margin: 20px px;
+}
+
+.fullscreen-card p {
+  font-size: 2rem;
+  margin-top: -20px;
+
+}
+
+.fullscreen-card-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-left:  -530px;
+}
+
+.speak-button,
+.back-button {
+  background: linear-gradient(to bottom, #3903b6, #85e6d1);
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+}
+
+.speak-button:hover,
+.back-button:hover {
+  background: #268ac4;
+}
+
+
 
 @media (max-width: 768px) {
   .container {

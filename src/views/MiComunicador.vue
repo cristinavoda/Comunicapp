@@ -1,37 +1,62 @@
 <template>
-
-    <div class="mi-comunicador">
-      
-    
-      <div class="grid">
-        <div v-for="(button, index) in buttons" :key="index" class="image-card">
-          <img :src="button.image" :alt="button.text" />
-          <p @click="speakText(button.text)">{{ button.text }}</p>
-        </div>
-      </div>
+  <div class="mi-comunicador">
+    <!-- ✅ VISTA AMPLIADA -->
+    <div v-if="selectedButton" class="fullscreen-card">
+      <img :src="selectedButton.image" :alt="selectedButton.text" />
+      <p>{{ selectedButton.text }}</p>
+   <div class="fullscreen-card-buttons">
+  <button class="speak-button" @click="speakText(selectedButton.text)">Hablar</button>
+  <button class="back-button" @click="selectedButton = null">Volver</button>
+</div>
   
-      <div class="botones-container">
+    </div>
+
+    
+    <div v-else class="grid">
+      <div
+        v-for="(button, index) in buttons"
+        :key="index"
+        class="image-card"
+        @click="selectButton(button)"
+      >
+        <img :src="button.image" :alt="button.text" />
+        <p>{{ button.text }}</p>
+      </div>
+    </div>
+
+    
+    <div class="botones-container">
       <button id="no-button" class="button no" @click="speakText('NO')">NO</button>
       <button id="si-button" class="button si" @click="speakText('SÍ')">SÍ</button>
     </div>
-    </div>
-  </template>
-  
-  <script>
-  import { mapState } from "vuex";
-  
-  export default {
-    computed: {
-      ...mapState(["buttons"]),
+  </div>
+</template>
+
+<script>
+import { mapState } from "vuex";
+
+export default {
+  data() {
+    return {
+      selectedButton: null,
+    };
+  },
+  computed: {
+    ...mapState(["buttons"]),
+  },
+  methods: {
+    speakText(text) {
+      const utterance = new SpeechSynthesisUtterance(text);
+      speechSynthesis.speak(utterance);
     },
-    methods: {
-      speakText(text) {
-        const utterance = new SpeechSynthesisUtterance(text);
-        speechSynthesis.speak(utterance);
-      },
+    selectButton(button) {
+      this.selectedButton = button;
+      this.speakText(button.text);
     },
-  };
-  </script>
+  },
+};
+</script>
+
   
   <style scoped>
 
@@ -73,7 +98,7 @@
         content: attr(data-text);
         position:inherit;
         bottom: 10px;
-      width: 100px;
+        width: 100px;
         transform: translateX(-50%);
         background-color: rgba(44, 161, 116, 0.929);
         color: #fff;
@@ -90,7 +115,7 @@
   width: 180px;
   height: 230px;
   border-radius: 12px;
-  box-shadow: 2px 4px 10px rgba(143, 189, 151, 0.884);
+  box-shadow: 6px 6px 10px rgba(143, 189, 151, 0.884);
   padding: 26px;
   text-align:center;
 }
@@ -156,18 +181,81 @@
   
   background-color: rgb(167, 11, 11);
   color: white;
-   
+  box-shadow: 4px 4px 4px rgba(233, 30, 40, 0.884);
   margin-top: 40px;
 }
 
 .si {
   background-color: rgb(3, 80, 42);
   color: white;
- 
+  box-shadow: 4px 4px 4px rgba(72, 178, 228, 0.884);
   margin-top: 40px;
 }
+.container {
+  padding: 60px;
+  font-size: 16px;
+}
+  .fullscreen-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.fullscreen-card img {
+  max-width: 90%;
+  min-width: 70%;
+  height: auto;
+  border-radius: 12px;
+  margin-top: -20px;
+  margin-left: -370px;
+  box-shadow: 6px 6px 10px 6px rgba(66, 210, 230, 0.884);
+  margin: 20px px;
+}
+
+.fullscreen-card p {
+  font-size: 2rem;
+  margin-top: -20px;
+
+}
+
+.fullscreen-card-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-left:  -530px;
+}
+
+.speak-button,
+.back-button {
+  background: linear-gradient(to bottom, #3903b6, #85e6d1);
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+}
+
+.speak-button:hover,
+.back-button:hover {
+  background: #268ac4;
+}
+
   
-  
+@media (max-width: 768px) {
+  .container {
+    font-size: 14px;
+    padding: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    font-size: 12px;
+    padding: 5px;
+  }
+
+}
   
   
 

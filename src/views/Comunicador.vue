@@ -5,8 +5,8 @@
       <img :src="fullscreenItem.image" alt="Imagen seleccionada" />
       <p>{{ fullscreenItem.text }}</p>
        <div class="fullscreen-card-buttons">
-      <button class="speak-button" @click="speakText(fullscreenItem.text)">Hablar</button>
-      <button class="back-button" @click="fullscreenItem = null">Volver</button>
+      <button class="speak-button" @click="speakText(fullscreenItem.text)">🗣️Hablar</button>
+      <button class="back-button" @click="fullscreenItem = null">◀️Volver</button>
     </div>
      <div class="fullscreen-si-no">
     <button id="no-button" class="button no" @click="speakText('NO')">NO</button>
@@ -31,6 +31,7 @@
       </div>
     </div>
   </div>
+  
 </template>
 
 <script>
@@ -104,6 +105,7 @@ background-color: #e8ecdc;
   padding: 0px;
   margin-left: 0cap;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  gap:10px;
 }
 .btn:hover:after {
   content: attr(data-text);
@@ -171,12 +173,11 @@ background-color: #e8ecdc;
 }
 
 .fullscreen-card img {
-  max-width: 390px;
-  min-width: 70%;
-  height: auto;
+  max-width: 420px;
+  min-height: 630px;
   border-radius: 12px;
   margin-top: -20px;
-  margin-left: 0px;
+  margin-left: 50px;
   box-shadow: 6px 6px 10px 6px rgba(66, 210, 230, 0.884);
   margin: 20px px;
 }
@@ -210,26 +211,13 @@ background-color: #e8ecdc;
 }
 
 .fullscreen-si-no {
-  display: flex;
+  display:none;
   justify-content: flex-start;
   gap: 10px;
-  margin-top: 30px;
-  margin-left: -30px;
+  margin-top: 300px;
+  margin-left: -3000px;
 }
 
 
-@media (max-width: 768px) {
-  .container {
-    font-size: 14px;
-    padding: 10px;
-  }
-}
 
-@media (max-width: 480px) {
-  .container {
-    font-size: 12px;
-    padding: 5px;
-  }
-
-}
 </style>

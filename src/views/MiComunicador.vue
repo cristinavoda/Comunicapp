@@ -5,8 +5,8 @@
       <img :src="selectedButton.image" :alt="selectedButton.text" />
       <p>{{ selectedButton.text }}</p>
    <div class="fullscreen-card-buttons">
-  <button class="speak-button" @click="speakText(selectedButton.text)">Hablar</button>
-  <button class="back-button" @click="selectedButton = null">Volver</button>
+  <button class="speak-button" @click="speakText(selectedButton.text)">🗣️Hablar</button>
+  <button class="back-button" @click="selectedButton = null">◀️Volver</button>
 </div>
   
     </div>
@@ -188,7 +188,15 @@ export default {
 .si {
   background-color: rgb(3, 80, 42);
   color: white;
-  box-shadow: 4px 4px 4px rgba(72, 178, 228, 0.884);
+ .fullscreen-si-no {
+  display:none;
+  justify-content: flex-start;
+  gap: 10px;
+  margin-top: 30px;
+  margin-left: -30px;
+}
+
+
   margin-top: 40px;
 }
 .container {
@@ -240,6 +248,15 @@ export default {
 .back-button:hover {
   background: #268ac4;
 }
+.fullscreen-si-no {
+  display:none;
+  justify-content: flex-start;
+  gap: 10px;
+  margin-top: 30px;
+  margin-left: -30px;
+}
+
+
 
   
 @media (max-width: 768px) {

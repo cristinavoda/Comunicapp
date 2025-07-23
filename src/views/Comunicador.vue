@@ -218,7 +218,9 @@ header {
 .fullscreen-card p {
   font-size: 2rem;
   margin-top: 20px;
-  color: #333;
+   background: linear-gradient(45deg, #2a045c, #43ddd5);
+    -webkit-background-clip: text;
+  
 }
 
 .fullscreen-card-buttons {

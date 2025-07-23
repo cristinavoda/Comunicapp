@@ -1,36 +1,33 @@
+
 <template>
   <div class="mi-comunicador">
-    
-    <div v-if="selectedButton" class="fullscreen-card">
-      <img :src="selectedButton.image" :alt="selectedButton.text" />
-      <p>{{ selectedButton.text }}</p>
-   <div class="fullscreen-card-buttons">
-  <button class="speak-button" @click="speakText(selectedButton.text)">🗣️Hablar</button>
-  <button class="back-button" @click="selectedButton = null">◀️Volver</button>
-</div>
-  
-    </div>
-
-    
-    <div v-else class="grid">
-      <div
+    <div class="grid">
+      <button
         v-for="(button, index) in buttons"
         :key="index"
-        class="image-card"
-         @click="speakText(button.text)"
+        class="btn"
+        :data-text="button.text"
+        :style="{ backgroundImage: `url(${button.image})` }"
+        @click="speakText(button.text)"
         @dblclick="openFullscreen(button)"
-      
-      >
-        <img :src="button.image" :alt="button.text" />
-        <p>{{ button.text }}</p>
-      </div>
+      ></button>
     </div>
 
-    
     <div class="botones-container">
       <button id="no-button" class="button no" @click="speakText('NO')">NO</button>
       <button id="si-button" class="button si" @click="speakText('SÍ')">SÍ</button>
     </div>
+
+    <transition name="fade">
+      <div v-if="selectedButton" class="fullscreen-card">
+        <img :src="selectedButton.image" :alt="selectedButton.text" />
+        <p>{{ selectedButton.text }}</p>
+        <div class="fullscreen-card-buttons">
+          <button class="speak-button" @click="speakText(selectedButton.text)">🗣️ Hablar</button>
+          <button class="back-button" @click="closeFullscreen">◀️ Volver</button>
+        </div>
+      </div>
+    </transition>
   </div>
 </template>
 
@@ -55,6 +52,12 @@ export default {
       this.selectedButton = button;
       this.speakText(button.text);
     },
+      openFullscreen(button) {
+      this.selectedButton = button;
+    },
+    closeFullscreen() {
+      this.selectedButton = null;
+    },
   },
 };
 </script>
@@ -77,15 +80,15 @@ export default {
 .grid {
   display: grid;
   grid-template-columns: repeat(2, 150px);
-  row-gap: 10px;
-  column-gap: 100px;
+  row-gap:20px;
+  column-gap: 70px;
   margin: 20px auto;
   margin-left: -165px;
   margin-bottom: -20px;
-  margin-top: -60px;
+  margin-top: -20px;
 }
 
-.button{
+.btn{
   width: 190px;
   height: 210px;
   background-size: cover;
@@ -95,6 +98,7 @@ export default {
   cursor: pointer;
   margin: 5px;
   margin-left: -auto;
+  box-shadow: 16px 6px 10px rgba(143, 189,);
 }
 .button:hover:after {
         content: attr(data-text);
@@ -117,7 +121,7 @@ export default {
   width: 180px;
   height: 230px;
   border-radius: 12px;
-  box-shadow: 6px 6px 10px rgba(143, 189, 151, 0.884);
+  box-shadow: 16px 6px 10px rgba(143, 189, 151, 0.884);
   padding: 26px;
   text-align:center;
 }
@@ -126,12 +130,12 @@ export default {
   margin-left: -20px ;
   margin-top: -15px;
   width: 220px;
-  height: 220px;
+  height: 200px;
   border-radius: 12px;
 }
 .image-card p {
   width: 170px;
-  height: 180px;
+  height: 190px;
   font-family: 'Poppins', sans-serif;
   font-weight: 600;
   color: #07BEB8;
@@ -222,18 +226,50 @@ export default {
   box-shadow: 6px 6px 10px 6px rgba(66, 210, 230, 0.884);
   margin: 20px px;
 }
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s ease;
+}
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
+.fullscreen-card {
+  position: fixed;
+  top: 80px; /* deja espacio para header si tienes uno */
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #fff;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.fullscreen-card img {
+  max-width: 90%;
+  max-height: 60vh;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
 
 .fullscreen-card p {
   font-size: 2rem;
-  margin-top: -20px;
+  margin-top: 20px;
+  background: linear-gradient(45deg, #2a045c, #43ddd5);
+    -webkit-background-clip: text;
+  
 
 }
 
 .fullscreen-card-buttons {
   display: flex;
-  justify-content: center;
   gap: 20px;
-  margin-left:  -30px;
+  margin-top: 20px;
 }
 
 .speak-button,
@@ -244,20 +280,13 @@ export default {
   border-radius: 8px;
   color: white;
   cursor: pointer;
+  font-size: 1rem;
 }
 
 .speak-button:hover,
 .back-button:hover {
   background: #268ac4;
 }
-.fullscreen-si-no {
-  display:none;
-  justify-content: flex-start;
-  gap: 10px;
-  margin-top: 30px;
-  margin-left: -30px;
-}
-
 
 
   

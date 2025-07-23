@@ -68,18 +68,37 @@ display: flex;
 justify-content: center;
 align-items: center;
 height: 100vh;
-margin-top: 90px;
-margin-left: -20px;
+margin-top: 60px;
+margin-left: -40px;
 background-color: #e8ecdc;
 
 }
+header {
+  display: flex;
+  align-items:flex-start; 
+  justify-content: flex-start;
+  height: 80px;
+  background: linear-gradient(to bottom, #4153b4, #87d3ce);
+  padding: 0 10px;     
+  box-sizing: border-box; 
+  gap: 8px;
+  margin: 0 auto;
+  width: 130%;
+  margin-left: -10px;
+  margin-top: -90px;
+
+  
+}
+
 
 .grid {
   display: grid ;
   margin-left: -150px ;
+
   grid-template-columns: repeat(2, 150px);
   margin-bottom: 0px;
-  padding: -5px;
+  margin-top: -50px;
+  padding: -10px 5px;
   row-gap: 20px; 
   column-gap: 80px; 
   margin-left: -160px;
@@ -176,7 +195,7 @@ background-color: #e8ecdc;
 
 .fullscreen-card {
   position: fixed;
-  top: 70px; 
+  top: 80px; /* deja espacio para header si tienes uno */
   left: 0;
   right: 0;
   bottom: 0;
@@ -198,11 +217,8 @@ background-color: #e8ecdc;
 
 .fullscreen-card p {
   font-size: 2rem;
-  margin-top:30px;
-
-  background: linear-gradient(45deg, #2a045c, #43ddd5); 
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  margin-top: 20px;
+  color: #333;
 }
 
 .fullscreen-card-buttons {
@@ -226,5 +242,4 @@ background-color: #e8ecdc;
 .back-button:hover {
   background: #268ac4;
 }
-
 </style>

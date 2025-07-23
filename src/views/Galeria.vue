@@ -153,7 +153,7 @@ handleFileUpload(event) {
     -webkit-text-fill-color: transparent;
     display: inline-block;
     margin-left: -150px;
-    margin-top: -20px;
+    margin-top: 0px;
   }
   
   .gallery {

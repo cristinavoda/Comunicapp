@@ -60,7 +60,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 
 body {
 font-family:Arial, sans-serif ;
@@ -68,7 +68,7 @@ display: flex;
 justify-content: center;
 align-items: center;
 height: 100vh;
-margin-top: 60px;
+margin-top: 290px;
 margin-left: -40px;
 background-color: #e8ecdc;
 

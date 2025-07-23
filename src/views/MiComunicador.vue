@@ -17,7 +17,9 @@
         v-for="(button, index) in buttons"
         :key="index"
         class="image-card"
-        @click="selectButton(button)"
+         @click="speakText(button.text)"
+        @dblclick="openFullscreen(button)"
+      
       >
         <img :src="button.image" :alt="button.text" />
         <p>{{ button.text }}</p>

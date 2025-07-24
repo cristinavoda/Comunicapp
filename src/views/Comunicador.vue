@@ -37,7 +37,7 @@ export default {
         { text: "Hoy vamos de viaje con el tren", image: "/TrenAve.png" },
         { text: "a la playa", image: "/Salou.png" },
         { text: "iremos a comer ", image: "/Chiringuito.png" },
-        { text: "pescado", image: "/Pescado.png" },
+        { text: "pescado", image: "/pescado.png" },
         { text: "despues iremos con el barco", image: "/Barco.png" },
         { text: "y a descansar en la habitacion", image: "/HabitacionHotel.png" },
       ],
@@ -210,7 +210,13 @@ header {
 
 .fullscreen-card img {
   max-width: 90%;
-  max-height: 60vh;
+  position: fixed;
+  top: 80px; 
+  left: 0;
+  width: 100%;
+  height: calc(100vh - 90px); 
+  object-fit: cover; 
+  z-index: 1000;
   border-radius: 12px;
   box-shadow: 8px 8px 15px rgba(6, 117, 108, 0.575);
 }
@@ -243,5 +249,12 @@ header {
 .speak-button:hover,
 .back-button:hover {
   background: #268ac4;
+}
+
+@media (max-width: 768px) {
+  .fullscreen-image {
+    top: 0; 
+    height: 100vh; 
+  }
 }
 </style>

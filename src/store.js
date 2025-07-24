@@ -7,7 +7,7 @@ const store = createStore({
       { text: "Hoy vamos de viaje con el tren", image: "/TrenAve.png" },
       { text: "a la playa", image: "/Salou.png" },
       { text: "iremos a comer", image: "/Chiringuito.png" },
-      { text: "pescado", image: "/Pescado.png" },
+      { text: "pescado", image: "/pescado.png" },
       { text: "despues iremos con el barco", image: "/Barco.png" },
       { text: "y a descansar en la habitacion", image: "/HabitacionHotel.png" },
     ],

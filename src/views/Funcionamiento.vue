@@ -41,10 +41,56 @@
     <hr class="step-divider">
 
     <h5>COMUNICADOR - es un DEMO, con imágenes y voz al hacer click sobre las palabras.</h5>
+    <h3>Cómo usar el Comunicador</h3>
+
+<h4>✅ Opciones básicas:</h4>
+<p>El Comunicador muestra un <strong>grid</strong> de imágenes personalizables.</p>
+<p>Cada imagen representa una necesidad, una acción o un mensaje (por ejemplo: comida, agua, baño, familia, paseo, estar enfermo, etc).</p>
+
+<h4>🗣️ <strong>Cómo funciona:</strong></h4>
+<P>
+  <strong>1 clic</strong> sobre una imagen: reproduce en voz alta el texto asociado. Así puedes construir frases o una historia usando varias imágenes.
+  <strong>Doble clic</strong> sobre una imagen: muestra la imagen seleccionada en pantalla completa, más grande y clara. Esto resalta el mensaje para que todos lo entiendan mejor.
+</P>
+
+<h4>📌 Ejemplo de uso:</h4>
+<p>El usuario puede combinar varias imágenes para crear una pequeña historia: 
+“Estoy enfermo → Necesito ir al médico → Después vamos al parque → Comemos tortilla de patata → Bebemos agua → Por la tarde volvemos a casa”.</p>
+
+<p>Al hacer clic en cada imagen se escuchará la frase correspondiente. Si se desea resaltar una imagen, basta con hacer doble clic y aparecerá en pantalla completa, junto a los botones para volver o reproducir de nuevo el mensaje.</p>
+
+<h4>🔄 Personalización:</h4>
+<p>El texto de cada imagen se puede personalizar con palabras, frases o incluso poesías. Cada usuario puede adaptarlo a sus propias necesidades.</p>
+
+
+
+
+<p>Este Comunicador está diseñado para ser <strong>simple, claro y personalizable</strong>, ayudando a las personas no verbales a expresar sus necesidades, emociones e historias.</p>
+
 <hr class="step-divider">
 
     <h4>MI-COMUNICADOR -  es el Comunicador del usuario, con sus imágenes propias según sus necesidades, y voz al hacer click sobre las palabras.</h4>
-<hr class="step-divider">
+
+<h4>✅ Opciones básicas:</h4>
+<p>El MiComunicador muestra un <strong>grid</strong> de imágenes personalizables.</p>
+<p>Cada imagen representa una necesidad, una acción o un mensaje (por ejemplo: comida, agua, baño, familia, paseo, estar enfermo, etc).</p>
+
+<h4>🗣️ <strong>Cómo funciona:</strong></h4>
+<P>
+  <strong>1 clic</strong> sobre una imagen: reproduce en voz alta el texto asociado. Así puedes construir frases o una historia usando varias imágenes.
+  <strong>Doble clic</strong> sobre una imagen: muestra la imagen seleccionada en pantalla completa, más grande y clara. Esto resalta el mensaje para que todos lo entiendan mejor.
+</P>
+
+<h4>📌 Ejemplo de uso:</h4>
+<p>El usuario puede combinar varias imágenes para crear una pequeña historia: 
+“Estoy enfermo → Necesito ir al médico → Después vamos al parque → Comemos tortilla de patata → Bebemos agua → Por la tarde volvemos a casa”.</p>
+
+<p>Al hacer clic en cada imagen se escuchará la frase correspondiente. Si se desea resaltar una imagen, basta con hacer doble clic y aparecerá en pantalla completa, junto a los botones para volver o reproducir de nuevo el mensaje.</p>
+
+<h4>🔄 Personalización:</h4>
+<p>El texto de cada imagen se puede personalizar con palabras, frases o incluso poesías. Cada usuario puede adaptarlo a sus propias necesidades.</p>
+
+---    <hr class="step-divider">
     <h5>CONTACTO -  Para dudas o ayuda, sugerencias , mandar un mensaje al autor de la aplicación.<br><a href="mailto:cristinavoda483@gmail.com">cristinavoda483@gmail.com</a></br>
 </h5>
   

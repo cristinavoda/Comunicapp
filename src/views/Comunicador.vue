@@ -34,12 +34,12 @@ export default {
   data() {
     return {
       buttons: [
-        { text: "Quiero comer", image: "/pasta.jpg" },
-        { text: "Agua, tengo sed", image: "/agua.jpg" },
-        { text: "Vamos a pasear", image: "/pasear.jpg" },
-        { text: "Estoy enfermo", image: "/enfermo.jpg" },
-        { text: "Quiero al baño", image: "/baño.jpg" },
-        { text: "Quiero ir con el tren", image: "/tren.webp" },
+        { text: "Hoy vamos de viaje con el tren", image: "/TrenAve.png" },
+        { text: "a la playa", image: "/Salou.png" },
+        { text: "iremos a comer ", image: "/Chiringuito.png" },
+        { text: "pescado", image: "/Pescado.png" },
+        { text: "despues iremos con el barco", image: "/Barco.png" },
+        { text: "y a descansar en la habitacion", image: "/HabitacionHotel.png" },
       ],
       selectedButton: null,
     };
@@ -94,7 +94,6 @@ header {
 .grid {
   display: grid ;
   margin-left: -150px ;
-
   grid-template-columns: repeat(2, 150px);
   margin-bottom: 0px;
   margin-top: -50px;
@@ -195,7 +194,7 @@ header {
 
 .fullscreen-card {
   position: fixed;
-  top: 80px; /* deja espacio para header si tienes uno */
+  top: 80px; 
   left: 0;
   right: 0;
   bottom: 0;
@@ -206,13 +205,14 @@ header {
   align-items: center;
   justify-content: center;
   padding: 20px;
+  box-shadow: 6px 6px 10px 6px rgba(66, 210, 230, 0.884);
 }
 
 .fullscreen-card img {
   max-width: 90%;
   max-height: 60vh;
   border-radius: 12px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  box-shadow: 8px 8px 15px rgba(6, 117, 108, 0.575);
 }
 
 .fullscreen-card p {

@@ -187,7 +187,7 @@ export default {
 .fullscreen-card {
   position: fixed;
   top: 83px; 
-  left: 10px;
+  left: 0px;
   right: 0;
   bottom: 0;
   background: #fff;

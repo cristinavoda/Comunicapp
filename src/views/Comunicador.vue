@@ -182,15 +182,7 @@ header {
   padding: 50px;
   font-size: 16px;
 }
-  .fullscreen-card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  border-radius: 12px;
-  box-shadow: 8px 8px 15px rgba(6, 117, 108, 0.575);
-}
-
+  
 
 .fade-enter-active,
 .fade-leave-active {
@@ -204,7 +196,7 @@ header {
 .fullscreen-card {
   position: fixed;
   top: 85px; 
-  left: -30px;
+  left: 0px;
   right: 0;
   bottom: 0px;
   background: #fff;

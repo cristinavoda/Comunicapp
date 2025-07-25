@@ -203,8 +203,8 @@ header {
 
 .fullscreen-card {
   position: fixed;
-  top: 80px; 
-  left: 0;
+  top: 85px; 
+  left: 10px;
   right: 0;
   bottom: 0;
   background: #fff;

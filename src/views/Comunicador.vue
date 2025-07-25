@@ -179,9 +179,18 @@ header {
 }
 
 .container {
-  padding: 60px;
+  padding: 50px;
   font-size: 16px;
 }
+  .fullscreen-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  box-shadow: 8px 8px 15px rgba(6, 117, 108, 0.575);
+}
+
 
 .fade-enter-active,
 .fade-leave-active {
@@ -205,28 +214,22 @@ header {
   align-items: center;
   justify-content: center;
   padding: 20px;
-  box-shadow: 6px 6px 10px 6px rgba(66, 210, 230, 0.884);
 }
 
 .fullscreen-card img {
   max-width: 90%;
-  position: fixed;
-  top: 80px; 
-  left: 0;
-  width: 100%;
-  height: calc(100vh - 90px); 
-  object-fit: cover; 
-  z-index: 1000;
+  max-height: 60vh;
   border-radius: 12px;
-  box-shadow: 8px 8px 15px rgba(6, 117, 108, 0.575);
+  box-shadow: 0 4px 15px rgba(39, 195, 223, 0.87);
 }
 
 .fullscreen-card p {
   font-size: 2rem;
   margin-top: 20px;
-   background: linear-gradient(45deg, #2a045c, #43ddd5);
+  background: linear-gradient(45deg, #2a045c, #43ddd5);
     -webkit-background-clip: text;
   
+
 }
 
 .fullscreen-card-buttons {
@@ -251,10 +254,21 @@ header {
   background: #268ac4;
 }
 
+
+  
 @media (max-width: 768px) {
-  .fullscreen-image {
-    top: 0; 
-    height: 100vh; 
+  .container {
+    font-size: 14px;
+    padding: 10px;
   }
 }
+
+@media (max-width: 480px) {
+  .container {
+    font-size: 12px;
+    padding: 5px;
+  }
+
+}
+
 </style>

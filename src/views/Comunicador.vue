@@ -204,9 +204,9 @@ header {
 .fullscreen-card {
   position: fixed;
   top: 85px; 
-  left: 10px;
+  left: -30px;
   right: 0;
-  bottom: 0;
+  bottom: 0px;
   background: #fff;
   z-index: 1000;
   display: flex;
@@ -218,8 +218,9 @@ header {
 
 .fullscreen-card img {
   max-width: 90%;
-  max-height: 60vh;
+  max-height: 90vh;
   border-radius: 12px;
+  left: 10px;
   box-shadow: 0 4px 15px rgba(39, 195, 223, 0.87);
 }
 

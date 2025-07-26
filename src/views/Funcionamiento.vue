@@ -95,6 +95,35 @@
 </h5>
   
    <hr class="step-divider">
+   <hr class="step-divider">
+
+<h2>CONFIGURAR LA VOZ - Escoge cómo quieres que hable tu Comunicador</h2>
+
+<hr class="step-divider">
+
+<h3>Paso 1: Abrir la vista Configurar Voz</h3>
+<p>En el menú lateral, haz clic en <strong>CONFIGURACIÓN</strong> y luego selecciona <strong>CONFIGURAR VOZ</strong>.</p>
+
+<h3>Paso 2: Elegir una voz</h3>
+<p>Escoge entre una voz de <strong>chico</strong> o de <strong>chica</strong>.</p>
+
+<h3>Paso 3: Probar la voz</h3>
+<p>Pulsa el botón <strong>Probar Voz</strong> para escuchar cómo suena.</p>
+
+<h3>Paso 4: Guardar la voz</h3>
+<p>Si te gusta cómo suena, pulsa <strong>Guardar Voz</strong>. El Comunicador usará esta voz en todos los botones para leer en voz alta.</p>
+
+<hr class="step-divider">
+
+<h2>TRADUCIR EL TEXTO - Usa el Comunicador en cualquier idioma</h2>
+
+<hr class="step-divider">
+
+<h3>¿Cómo traducir el contenido?</h3>
+<p>Desde cualquier dispositivo, abre el menú <strong>CONFIGURACIÓN</strong> y selecciona <strong>TRADUCIR</strong>.</p>
+<p>Elige el idioma que desees. Todo el contenido del Comunicador se traducirá automáticamente.</p>
+<p>Esta función es útil para usuarios que hablan otros idiomas o están en otro país.</p>
+<hr class="step-divider">
   </div>
 </template>
 

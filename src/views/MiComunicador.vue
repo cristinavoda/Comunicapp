@@ -189,7 +189,7 @@ export default {
   top: 83px; 
   left: 0px;
   right: 0;
-  bottom: 0;
+  bottom: 10px;
   background: #fff;
   z-index: 1000;
   display: flex;

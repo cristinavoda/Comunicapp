@@ -195,7 +195,7 @@ header {
 
 .fullscreen-card {
   position: fixed;
-  top: 85px; 
+  top: 95px; 
   left: 0px;
   right: 0;
   bottom: 0px;
@@ -210,7 +210,7 @@ header {
 
 .fullscreen-card img {
   max-width: 90%;
-  max-height: 90vh;
+  height: auto;
   border-radius: 12px;
   left: 10px;
   box-shadow: 0 4px 15px rgba(39, 195, 223, 0.87);

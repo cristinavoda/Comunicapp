@@ -170,7 +170,7 @@ async fetchImages() {
   this.$store.commit("UPDATE_SELECTED_IMAGE_TEXT", image.tags);
 },
 replaceImage(index) {
-  // Nueva lógica: considera subida, Pixabay o Galería
+  
   const newImage = 
     this.uploadedImage || 
     this.selectedPixabayImage || 
@@ -183,7 +183,7 @@ replaceImage(index) {
   if (newImage) {
     this.$store.dispatch("replaceImage", { index, image: newImage, text: newText });
 
-    // Limpia solo lo que toque
+    
     this.uploadedImage = null;
     this.selectedPixabayImage = null;
     this.selectedImageText = "";

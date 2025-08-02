@@ -30,6 +30,11 @@ const store = createStore({
       state.selectedImage = image;
       localStorage.setItem("selectedImage", JSON.stringify(image));
     },
+     set_SELECTED_IMAGE_TEXT(state, image) {
+    
+    state.selectedImageText = image.tags || image.text || "";
+    localStorage.setItem("selectedImageText", state.selectedImageText);
+  },
     ADD_SELECTED_IMAGE(state, image) {
       const exists = state.selectedImages.find((img) => img.id === image.id);
       if (!exists) {

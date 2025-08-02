@@ -19,8 +19,7 @@
   <router-link to="/mi-comunicador" class="btn-mi-comunicador">
     MiComunicador
   </router-link>
-  <MiComunicador v-if="showMiComunicador" />
-
+  
   
 </header>
 
@@ -97,9 +96,7 @@
 
 import { ref } from 'vue'
 import Comunicador from './views/Comunicador.vue';
-import MiComunicador from "./views/MiComunicador.vue";
 
-const showMiComunicador = ref(true);
 import { onMounted } from "vue";
 import { useStore } from "vuex";
 

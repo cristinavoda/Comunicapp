@@ -22,6 +22,10 @@ const store = createStore({
   },
 
   mutations: {
+    SET_IMAGES(state, images) {
+    state.savedImages = images;
+    localStorage.setItem("savedImages", JSON.stringify(images));
+  },
     set_SELECTED_IMAGE(state, image) {
       state.selectedImage = image;
       localStorage.setItem("selectedImage", JSON.stringify(image));
@@ -76,7 +80,7 @@ const store = createStore({
     
     set_BUTTONS(state, buttons) {
       state.buttons = buttons;
-      localStorage.setItem("buttons", JSON.stringify(buttons)); // Guardar cambios en localStorage
+      localStorage.setItem("buttons", JSON.stringify(buttons)); 
     },
     
 
@@ -171,6 +175,13 @@ const store = createStore({
           commit("updateActualizarComunicador", JSON.parse(savedData));
         }
       },
+      loadButtons({ commit }) {
+  const savedButtons = JSON.parse(localStorage.getItem("buttons"));
+  if (savedButtons && Array.isArray(savedButtons)) {
+    commit("set_BUTTONS", savedButtons);
+  }
+},
+
     guardarVoz({ commit }, voz) {
         commit("SET_VOZ", voz);
     },

@@ -92,7 +92,7 @@ export default {
     ...mapGetters(["selectedImage","buttons"]),
     ...mapState(["selectedImage","buttons"]),
     ...mapState(["savedImages"]),
-     ...mapState(["selectedImage"]),
+     ...mapState(["selectedImageForUpdate"]),
     
     selectedImage() {
     return this.$store.state.selectedImageForUpdate;
@@ -142,13 +142,14 @@ async fetchImages() {
       this.images = [];  
     } else {
       this.images = data.hits;
+const firstImage = data.hits[0];
+const base64Image = await this.imageToBase64(firstImage.webformatURL);
 
+this.selectedPixabayImage = base64Image;
+this.addToPreviewSection(firstImage);
+localStorage.setItem("imagenPixabay", base64Image);
      
-      const imageToUse = this.selectedImage || data.hits[0].webformatURL;
-      const base64Image = await this.imageToBase64(firstImage);
-      this.selectedPixabayImage = base64Image;
-      this.addToPreviewSection(imageToUse);
-      localStorage.setItem("imagenPixabay", base64Image);
+     
     }
   } catch (err) {
     this.error = ".";
@@ -162,6 +163,11 @@ async fetchImages() {
    selectPixabayImage(image) {
       this.selectedPixabayImage = image.webformatURL;
       this.images = []; 
+      this.guardarImagenDesdePixabay({
+  previewURL: image.webformatURL,
+  text: image.tags,
+});
+
     },
 
 
@@ -182,14 +188,22 @@ replaceImage(index) {
 
   if (newImage) {
     this.$store.dispatch("replaceImage", { index, image: newImage, text: newText });
+this.$store.dispatch("saveImage", {
+  previewURL: newImage,
+  text: newText
+});
+this.$store.dispatch("loadButtons");
 
     
     this.uploadedImage = null;
     this.selectedPixabayImage = null;
     this.selectedImageText = "";
     this.hasChanges = true;
+   
+
   } else {
     console.warn("No hay imagen seleccionada para reemplazar.");
+    this.$store.dispatch("loadButtons");
   }
 },
 
@@ -211,11 +225,11 @@ mounted() {
   const imageData = this.$route.query.image ? JSON.parse(this.$route.query.image) : null;
   if (imageData) {
     this.set_SELECTED_IMAGE(imageData);
-};
-{
+}
+
    this.$store.dispatch('loadSavedImages'); 
     this.cargarVoz(); 
-  }
+  
    if (!this.selectedImage || !this.selectedImage.previewURL) {
     const stored = JSON.parse(localStorage.getItem("selectedImage"));
     if (stored) {
@@ -225,7 +239,8 @@ mounted() {
 
   },
 
-  },}
+  },
+}
 
 
 </script>

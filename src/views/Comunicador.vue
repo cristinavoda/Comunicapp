@@ -209,7 +209,7 @@ header {
 }
 
 .fullscreen-card img {
-  max-width: 90%;
+  max-width: 80%;
   height: auto;
   border-radius: 12px;
   left: 10px;

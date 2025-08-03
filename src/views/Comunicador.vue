@@ -96,11 +96,11 @@ header {
   margin-left: -150px ;
   grid-template-columns: repeat(2, 150px);
   margin-bottom: 0px;
-  margin-top: -50px;
+  margin-top: -60px;
   padding: -10px 5px;
-  row-gap: 20px; 
+  row-gap: 0px; 
   column-gap: 80px; 
-  margin-left: -160px;
+  margin-left: -155px;
  
   ;
 }
@@ -160,6 +160,7 @@ header {
     align-items:flex-start; 
     gap: 10px;
     margin-left: 10px;
+    
 }
 
   

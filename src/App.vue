@@ -73,8 +73,10 @@
               <li><router-link to="/voz">🗣 Configurar Voz</router-link>
        </li>
              
-     
-              
+   
+       <li><button v-if="showInstallButton" @click="instalarApp" class="install-button">
+      📲 Instalar App
+    </button></li>
              
         </ul>
       </nav>
@@ -95,16 +97,52 @@
 <script setup>
 
 import { ref } from 'vue'
-import Comunicador from './views/Comunicador.vue';
+import Comunicador from './views/Comunicador.vue'
 
 import { onMounted } from "vue";
 import { useStore } from "vuex";
-
+const deferredPrompt = ref(null)
+const showInstallButton = ref(false)
 const store = useStore();
 
 onMounted(() => {
-  store.dispatch("cargarVoces");
+  store.dispatch("cargarVoces")
+
+   if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/service-worker.js').then((registration) => {
+      console.log('✅ Service Worker registrado:', registration)
+    }).catch((error) => {
+      console.log('❌ Error al registrar el Service Worker:', error)
+    })
+  }
+
+  
+  window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault()
+    deferredPrompt.value = e
+    showInstallButton.value = true
+    console.log('📲 Evento de instalación capturado')
+  })
 })
+
+
+function instalarApp() {
+  if (deferredPrompt.value) {
+    deferredPrompt.value.prompt()
+    deferredPrompt.value.userChoice.then((choiceResult) => {
+      if (choiceResult.outcome === 'accepted') {
+        console.log('✅ App instalada por el usuario')
+      } else {
+        console.log('❌ Usuario rechazó la instalación')
+      }
+      deferredPrompt.value = null
+      showInstallButton.value = false
+    })
+  }
+}
+
+
+
 
 
 const isNavbarOpen = ref(false)
@@ -132,7 +170,7 @@ if ('serviceWorker' in navigator) {
     console.log('Error al registrar el Service Worker:', error);
   });
 }
-let deferredPrompt;
+
 window.addEventListener('beforeinstallprompt', (e) => {
   
   e.preventDefault();
@@ -155,19 +193,6 @@ window.addEventListener('beforeinstallprompt', (e) => {
   });
 })
 
-const instalarApp = () => {
-  if (deferredPrompt) {
-    deferredPrompt.prompt()
-    deferredPrompt.userChoice.then((choiceResult) => {
-      if (choiceResult.outcome === 'accepted') {
-        console.log('✅ App instalada')
-      } else {
-        console.log('❌ Instalación cancelada')
-      }
-      deferredPrompt = null
-    })
-  }
-}
 
 onMounted(() => {
   window.addEventListener('beforeinstallprompt', (event) => {
@@ -175,6 +200,8 @@ onMounted(() => {
     deferredPrompt = event
   })
 })
+
+
 </script>
 
 
@@ -310,7 +337,21 @@ header button:hover,
 .sidebar a:hover {
   background-color: #07BEB8;
 }
-
+.install-button {
+  background-color:  #004f4f;
+  
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  margin: 1rem auto;
+  display: block;
+}
+.install-button:hover {
+  background-color: #004f4f;
+}
 
 main {
  margin-left: 10px;

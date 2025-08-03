@@ -80,12 +80,12 @@ export default {
 .grid {
   display: grid;
   grid-template-columns: repeat(2, 150px);
-  row-gap:20px;
-  column-gap: 70px;
+  row-gap:0px;
+  column-gap: 80px;
   margin: 20px auto;
-  margin-left: -165px;
+  margin-left: -155px;
   margin-bottom: -20px;
-  margin-top: -20px;
+  margin-top: -60px;
 }
 .btn {
   position: relative;

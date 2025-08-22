@@ -5,7 +5,7 @@ const store = createStore({
   state: {
     buttons:  JSON.parse(localStorage.getItem("buttons")) ||[
       { text: "estoy enfermo,vamos al medico ?", image: "/medicoEcografo.png", color: "red"  },
-      { text: "voy air al baño", image: "/baño1.png" },
+      { text: "voy a ir al baño", image: "/baño1.png" },
       { text: "quiero agua", image: "/agua.jpg" },
       { text: "quiero comer un bogadillo", image: "/bogadillo.png" },
       { text: "vamos al parque ?", image: "/parque1.png" },

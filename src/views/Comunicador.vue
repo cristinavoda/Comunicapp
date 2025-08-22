@@ -5,7 +5,7 @@
         v-for="(button, index) in buttons"
         :key="index"
         class="btn"
-        :class="btn.color"
+        
         :data-text="button.text"
         :style="{ backgroundImage: `url(${button.image})` }"
         @click="speakText(button.text)"
@@ -35,7 +35,7 @@ export default {
   data() {
     return {
       buttons: [
-        { text: "estoy enfermo,vamos al medico ?", image: "/medicoEcografo.png" ,color: "red"},
+        { text: "estoy enfermo,vamos al medico ?", image: "/medicoEcografo.png" },
         { text: "voy a ir al baño ", image: "/baño1.png" },
         { text: "quiero agua", image: "/agua.jpg" },
         { text: "quiero comer un bogadillo", image: "/bogadillo.png" },
@@ -105,13 +105,7 @@ header {
  
   ;
 }
-.red { background-color: #ff4d4d; }
-.orange { background-color: #ffa64d; }
-.blue { background-color: #4da6ff; }
-.green { background-color: #4dff88; }
-.yellow { background-color: #ffff66; }
-.lightblue { background-color: #80dfff; }
-.gray { background-color: #cccccc; }
+
 .btn {
   position: relative;
   display: inline-block;

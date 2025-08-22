@@ -76,7 +76,10 @@
    
        <li><button v-if="showInstallButton" @click="instalarApp" class="install-button">
       📲 Instalar App
-    </button></li>
+    </button><p v-if="!deferredPrompt" class="mensaje-info">
+    
+</p>
+</li>
              
         </ul>
       </nav>
@@ -351,6 +354,28 @@ header button:hover,
 }
 .install-button:hover {
   background-color: #004f4f;
+}
+.btn-instalar-app {
+  margin-left: -5px;
+  padding: 0.5rem 1rem;
+  display: inline-block; 
+  background: transparent;
+  color: rgb(241, 247, 246);
+  margin-top: 20px; 
+  margin-left: -15px;
+  margin-bottom: auto;
+  font-family: 'Poppins', sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  border: none;
+ 
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-instalar-app:hover {
+ color: #eaeedd;
+ background-color: #07BEB8;
 }
 
 main {

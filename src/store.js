@@ -4,12 +4,12 @@ import ActualizarComunicador from "./views/ActualizarComunicador.vue";
 const store = createStore({
   state: {
     buttons:  JSON.parse(localStorage.getItem("buttons")) ||[
-      { text: "Hoy vamos de viaje con el tren", image: "/TrenAve.png" },
-      { text: "a la playa", image: "/Salou.png" },
-      { text: "iremos a comer", image: "/Chiringuito.png" },
-      { text: "pescado", image: "/pescado.png" },
-      { text: "despues iremos con el barco", image: "/Barco.png" },
-      { text: "y a descansar en la habitacion", image: "/HabitacionHotel.png" },
+      { text: "estoy enfermo,vamos al medico ?", image: "/medicoEcografo.png", color: "red"  },
+      { text: "voy air al baño", image: "/baño1.png" },
+      { text: "quiero agua", image: "/agua.jpg" },
+      { text: "quiero comer un bogadillo", image: "/bogadillo.png" },
+      { text: "vamos al parque ?", image: "/parque1.png" },
+      { text: "y a descansar en la habitacion", image: "/habitacion.png" },
     ],
     selectedImage: JSON.parse(localStorage.getItem("selectedImage")) || null,
 
